@@ -41,46 +41,6 @@ const Sidebar = ({ mode, setMode }) => {
               <ListItemText primary="Add Books" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemIcon>
-                <Group />
-              </ListItemIcon>
-              <ListItemText primary="Groups" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemIcon>
-                <Storefront />
-              </ListItemIcon>
-              <ListItemText primary="Marketplace" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemIcon>
-                <Person />
-              </ListItemIcon>
-              <ListItemText primary="Friends" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemIcon>
-                <Settings />
-              </ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemIcon>
-                <AccountBox />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItemButton>
-          </ListItem>
           <ListItem disablePadding sx={{ display: "none" }}>
             <ListItemButton component="a" href="#simple-list">
               <ListItemIcon>
