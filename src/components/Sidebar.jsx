@@ -22,7 +22,11 @@ import React from "react";
 
 const Sidebar = ({ mode, setMode }) => {
   return (
-    <Box flex={2} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
+    <Box
+      flex={2}
+      p={2}
+      sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+    >
       <Box position="fixed">
         <List>
           <ListItem disablePadding>

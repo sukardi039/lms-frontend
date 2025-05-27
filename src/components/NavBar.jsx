@@ -30,13 +30,13 @@ const NavBar = () => {
   return (
     <AppBar position="sticky">
       <StyledToolbar>
-        <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
-          My System
+        <Typography
+          variant="h6"
+          sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+        >
+          Library Management System
         </Typography>
-        <Beenhere sx={{ display: { xs: "block", sm: "none" } }} />
-        <Search sx={{ display: "none" }}>
-          <InputBase placeholder="Search ..."></InputBase>
-        </Search>
+        <Beenhere sx={{ display: { sm: "block", md: "none" } }} />
         <Icon>
           <Badge
             color="error"

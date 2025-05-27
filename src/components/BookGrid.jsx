@@ -1,11 +1,4 @@
-import {
-  Box,
-  Grid,
-  InputBase,
-  TextField,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, TextField, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 
@@ -24,12 +17,12 @@ const BookGrid = ({ booklist }) => {
 
   return (
     <>
-      <Toolbar sx={{ display: "flex" }}>
-        <Box size={8}>
+      <Toolbar>
+        <Box flex={8}>
           <TextField
             fullwidth="true"
             id="standard-basic"
-            label="Search"
+            label="Search by Title"
             variant="standard"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -39,7 +32,15 @@ const BookGrid = ({ booklist }) => {
       {books.length ? (
         <Grid container space={2}>
           {books.map((book) => (
-            <Grid size={4} padding={2} key={book.book_id}>
+            <Grid
+              xs={12}
+              sm={12}
+              md={6}
+              lg={4}
+              xl={4}
+              padding={1}
+              key={book.book_id}
+            >
               <BookCard book={book}></BookCard>
             </Grid>
           ))}

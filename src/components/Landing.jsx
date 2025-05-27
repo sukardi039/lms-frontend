@@ -1,18 +1,17 @@
 import { Box, Stack, Skeleton } from "@mui/material";
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 import Books from "./Books";
 // import Post from "./Post";
 
 const StyledBox = styled(Box)({
   display: "flex",
   alignItems: "center",
-  gap: "20px",
+  justifyContent: "center",
+  gap: "10px",
   flex: "8",
 });
 const Landing = () => {
-  const [loading, setLoading] = useState(true);
-
   return (
     <StyledBox>
       <Books />

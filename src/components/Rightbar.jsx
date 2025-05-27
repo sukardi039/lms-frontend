@@ -9,7 +9,9 @@ const Rightbar = () => {
       sx={{
         display: {
           xs: "none",
-          sm: "block",
+          sm: "none",
+          md: "none",
+          lg: "block",
         },
       }}
     >
