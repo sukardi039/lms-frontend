@@ -5,7 +5,6 @@ import { Box, Skeleton, Stack, Typography } from "@mui/material";
 import BookGrid from "./BookGrid";
 
 const Books = () => {
-  const [showMode, setShowMode] = useState("list");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -45,7 +44,7 @@ const Books = () => {
           <Skeleton variant="rectangular" height={300} />
         </Stack>
       ) : (
-        <BookGrid books={data}></BookGrid>
+        <BookGrid booklist={data}></BookGrid>
       )}
     </Box>
   );

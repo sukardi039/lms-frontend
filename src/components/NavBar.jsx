@@ -34,7 +34,7 @@ const NavBar = () => {
           My System
         </Typography>
         <Beenhere sx={{ display: { xs: "block", sm: "none" } }} />
-        <Search>
+        <Search sx={{ display: "none" }}>
           <InputBase placeholder="Search ..."></InputBase>
         </Search>
         <Icon>
