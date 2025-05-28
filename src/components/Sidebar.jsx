@@ -19,6 +19,16 @@ import {
   Switch,
 } from "@mui/material";
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+import { BrowserRouter, HashRouter, Link } from "react-router-dom";
+
+const ErrorFallback = ({ error }) => {
+  <div>
+    <p>Something went wrong:</p>
+    <pre>{error.message}</pre>
+  </div>;
+};
 
 const Sidebar = ({ mode, setMode }) => {
   return (
@@ -28,34 +38,38 @@ const Sidebar = ({ mode, setMode }) => {
       sx={{ display: { xs: "none", sm: "none", md: "block" } }}
     >
       <Box position="fixed">
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#home">
-              <ListItemIcon>
-                <Home />
-              </ListItemIcon>
-              <ListItemText primary="Homepage" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="#add-book">
-              <ListItemIcon>
-                <LibraryBooks />
-              </ListItemIcon>
-              <ListItemText primary="Add Books" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding sx={{ display: "none" }}>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemIcon>
-                <ModeNight />
-              </ListItemIcon>
-              <Switch
-                onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
-              />
-            </ListItemButton>
-          </ListItem>
-        </List>
+        <BrowserRouter>
+          {/* <ErrorBoundary FallbackComponent={ErrorFallback}> */}
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="/">
+                <ListItemIcon>
+                  <Home />
+                </ListItemIcon>
+                <ListItemText primary="Homepage" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="/addbook">
+                <ListItemIcon>
+                  <Article />
+                </ListItemIcon>
+                <ListItemText primary="Add Books" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding sx={{ display: "none" }}>
+              <ListItemButton component="a" href="#simple-list">
+                <ListItemIcon>
+                  <ModeNight />
+                </ListItemIcon>
+                <Switch
+                  onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+                />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          {/* </ErrorBoundary> */}
+        </BrowserRouter>
       </Box>
     </Box>
   );

@@ -10,7 +10,7 @@ import React from "react";
 
 const BookCard = ({ book }) => {
   return (
-    <Card margin={2} padding={2} sx={{ maxWidth: 280 }}>
+    <Card margin={2} padding={2} sx={{ maxWidth: 290 }}>
       <Grid container spacing={2}>
         <Grid size={4} sx={{ justifyContent: "center" }}>
           <img
