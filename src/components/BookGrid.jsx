@@ -2,7 +2,7 @@ import { Box, Grid, TextField, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 
-const BookGrid = ({ booklist }) => {
+const BookGrid = ({ booklist, clickAction }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setFilteredBooks] = useState(booklist);
 
@@ -41,7 +41,7 @@ const BookGrid = ({ booklist }) => {
               padding={1}
               key={book.book_id}
             >
-              <BookCard book={book}></BookCard>
+              <BookCard book={book} clickAction={clickAction(book)}></BookCard>
             </Grid>
           ))}
         </Grid>

@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import Landing from "./components/Landing";
 import Sidebar from "./components/Sidebar";
 import Rightbar from "./components/Rightbar";
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (

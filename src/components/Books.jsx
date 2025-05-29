@@ -23,6 +23,10 @@ const Books = () => {
       });
   }, []);
 
+  const noAction = () => {
+    return null;
+  };
+
   if (loading)
     return (
       <Stack spacing={1}>
@@ -44,7 +48,7 @@ const Books = () => {
           <Skeleton variant="rectangular" height={300} />
         </Stack>
       ) : (
-        <BookGrid booklist={data}></BookGrid>
+        <BookGrid booklist={data} clickAction={noAction}></BookGrid>
       )}
     </Box>
   );
