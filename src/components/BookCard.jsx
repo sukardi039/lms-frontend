@@ -6,15 +6,47 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
+// import React, { useEffect, useState } from "react";
+// import { app } from "../lib/base";
+// import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 const BookCard = ({ book }) => {
+  // const [url, setUrl] = useState(null);
+  // const [fName, setFName] = useState(null);
+
+  // useEffect(() => {
+  //   if (url) {
+  //     console.log("fName, url", fName, url);
+  //     document.getElementById(fName).src = url;
+  //   }
+  // }, [fName, url]);
+
+  // async function getBookImage(fileName) {
+  //   setFName(fileName);
+  //   if (fileName) {
+  //     const storage = getStorage(app);
+  //     const fileRef = ref(storage, `/${fileName}`);
+  //     try {
+  //       const url = await getDownloadURL(fileRef);
+  //       setUrl(url);
+  //       console.log(fileName, url);
+  //       // document.getElementById(fileName).value = url;
+  //     } catch {
+  //       (error) => console.error("Error fetching file:", error);
+  //     }
+  //   }
+  // }
+
+  // getBookImage(book.bookImage);
+
   return (
     <Card margin={2} padding={2} sx={{ maxWidth: 290 }}>
       <Grid container spacing={2}>
         <Grid size={4} sx={{ justifyContent: "center" }}>
           <img
-            src={`/images/${book.bookImage}`}
+            // id={book.bookImage}
+            // src={getBookImage(book.bookImage)}
+            src={`${book.bookImage}`}
             alt={book.title}
             width="100%"
           ></img>
