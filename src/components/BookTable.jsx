@@ -2,6 +2,7 @@ import {
   Box,
   Grid,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -15,6 +16,7 @@ import {
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
 import BookCard from "./BookCard";
 
 const BookTable = ({ booklist, clickAction }) => {
@@ -33,8 +35,8 @@ const BookTable = ({ booklist, clickAction }) => {
 
   return (
     <>
-      <Toolbar sx={{ width: "90%" }}>
-        <Box sx={{ width: "40%" }}>
+      <Toolbar sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%" }}>
           <TextField
             fullwidth="true"
             id="standard-basic"
@@ -47,7 +49,7 @@ const BookTable = ({ booklist, clickAction }) => {
       </Toolbar>
       {books.length ? (
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 650, width: 1 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>ISBN</TableCell>
@@ -56,7 +58,13 @@ const BookTable = ({ booklist, clickAction }) => {
                 <TableCell>Category</TableCell>
                 <TableCell align="right">Published</TableCell>
                 <TableCell align="right">Copies</TableCell>
-                <TableCell align="center">Actions</TableCell>
+                <TableCell align="center">
+                  <AddIcon
+                    onClick={() => {
+                      clickAction("add", 0);
+                    }}
+                  />
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
