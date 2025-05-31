@@ -40,7 +40,7 @@ const BookCard = ({ book }) => {
   // getBookImage(book.bookImage);
 
   return (
-    <Card margin={2} padding={2} sx={{ maxWidth: 290 }}>
+    <Card margin={2} padding={2} sx={{ width: "100%", maxWidth: 270 }}>
       <Grid container spacing={2}>
         <Grid size={4} sx={{ justifyContent: "center" }}>
           <img

@@ -2,11 +2,12 @@ import { Box, Grid, TextField, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 
-const BookGrid = ({ booklist, clickAction }) => {
+const BookGrid = ({ booklist }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setFilteredBooks] = useState(booklist);
 
   useEffect(() => {
+    // console.log(booklist);
     setFilteredBooks(
       booklist.filter((books) =>
         books.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -17,8 +18,8 @@ const BookGrid = ({ booklist, clickAction }) => {
 
   return (
     <>
-      <Toolbar>
-        <Box flex={8}>
+      <Toolbar sx={{ width: "90%" }}>
+        <Box sx={{ width: "40%" }}>
           <TextField
             fullwidth="true"
             id="standard-basic"
@@ -30,7 +31,7 @@ const BookGrid = ({ booklist, clickAction }) => {
         </Box>
       </Toolbar>
       {books.length ? (
-        <Grid container space={2}>
+        <Grid container space={2} sx={{ width: "95%" }}>
           {books.map((book) => (
             <Grid
               xs={12}
@@ -41,7 +42,7 @@ const BookGrid = ({ booklist, clickAction }) => {
               padding={1}
               key={book.book_id}
             >
-              <BookCard book={book} clickAction={clickAction(book)}></BookCard>
+              <BookCard book={book}></BookCard>
             </Grid>
           ))}
         </Grid>

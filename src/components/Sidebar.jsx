@@ -35,7 +35,7 @@ const Sidebar = ({ mode, setMode }) => {
     <Box
       flex={2}
       p={2}
-      sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+      sx={{ display: { xs: "none", sm: "none", md: "block" }, width: "15%" }}
     >
       <Box position="fixed">
         <BrowserRouter>
@@ -55,6 +55,14 @@ const Sidebar = ({ mode, setMode }) => {
                   <Article />
                 </ListItemIcon>
                 <ListItemText primary="Add Books" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="/editbook">
+                <ListItemIcon>
+                  <Article />
+                </ListItemIcon>
+                <ListItemText primary="Edit Books" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding sx={{ display: "none" }}>

@@ -23,13 +23,14 @@ const Books = () => {
       });
   }, []);
 
-  const noAction = () => {
+  const noAction = (book) => {
+    console.log(book);
     return null;
   };
 
   if (loading)
     return (
-      <Stack spacing={1}>
+      <Stack spacing={1} sx={{ width: "80%" }}>
         <Skeleton variant="text" height={100} />
         <Skeleton variant="text" height={20} />
         <Skeleton variant="text" height={20} />

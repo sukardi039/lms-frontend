@@ -13,6 +13,7 @@ const Rightbar = () => {
           md: "none",
           lg: "block",
         },
+        width: "15%",
       }}
     >
       <Box pisition="fixed">Rightbar</Box>

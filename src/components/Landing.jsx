@@ -4,6 +4,7 @@ import styled from "styled-components";
 import React from "react";
 import Books from "./Books";
 import BookAdd from "./BookAdd";
+import BookEdit from "./BookEdit";
 import Error404 from "./Error404";
 // import Post from "./Post";
 
@@ -13,6 +14,7 @@ const StyledBox = styled(Box)({
   justifyContent: "center",
   gap: "10px",
   flex: "8",
+  width: "70%",
 });
 
 const router = createBrowserRouter([
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/addbook",
     element: <BookAdd />,
+  },
+  {
+    path: "/editbook",
+    element: <BookEdit />,
   },
 ]);
 
