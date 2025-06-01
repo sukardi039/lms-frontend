@@ -17,7 +17,7 @@ import axios from "axios";
 import BookGrid from "./BookGrid";
 import BookCard from "./BookCard";
 
-const BookAdd = ({ mode, originalData, endAction }) => {
+const BookAdd = () => {
   const [fileName, setFileName] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
   const [error, setError] = useState(null);
@@ -25,74 +25,6 @@ const BookAdd = ({ mode, originalData, endAction }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [booklist, setBookList] = useState([]);
-  const [toRedner, setToRender] = useState(true);
-  const [defaultData, setDefaultData] = useState({
-    book_id: 0,
-    isbn: "",
-    title: "",
-    author: "",
-    category: "",
-    bookImage: "",
-    publishedYear: "",
-    copyInStock: "",
-  });
-
-  // prepare form according to mode of action
-
-  // useEffect(() => {
-  //   if (
-  //     mode !== "add" &&
-  //     JSON.stringify(defaultData) !== JSON.stringify(originalData)
-  //   ) {
-  //     setDefaultData(originalData);
-  //   }
-  // }, [mode, originalData]);
-
-  console.log(
-    "originalData",
-    originalData,
-    "defaultData",
-    defaultData,
-    "mode",
-    mode
-  );
-  const { control, handleSubmit, setValue, reset } = useForm({
-    defaultValues: { originalData },
-  });
-  // set up default value
-
-  useEffect(() => {
-    setValue("ibsn", originalData.ibsn);
-    setValue("title", originalData.title);
-    setValue("author", originalData.author);
-    setValue("category", originalData.category);
-    setValue("bookImage", originalData.bookImage);
-    setValue("publishedYear", originalData.publishedYear);
-    setValue("copyInStock", originalData.copyInStock);
-    setFileName("");
-  }, [originalData]);
-
-  // document.getElementById("myImg").src = originalData.bookImage;
-  // useEffect(() => {
-  //   if (
-  //     JSON.stringify(defaultData) !== JSON.stringify(originalData) &&
-  //     mode !== "add"
-  //   ) {
-  //     //   setDefaultData(defaultData);
-  //     // }
-  //     // if (toRender) {
-  //     setValue("ibsn", defaultData.ibsn);
-  //     setValue("title", defaultData.title);
-  //     setValue("author", defaultData.author);
-  //     setValue("category", defaultData.category);
-  //     setValue("bookImage", defaultData.bookImage);
-  //     setValue("publishedYear", defaultData.publishedYear);
-  //     setValue("copyInStock", defaultData.copyInStock);
-  //     setFileName("");
-  //     setToRender(false);
-  //   }
-  // }, [defaultData]);
-  // document.getElementById("myImg").src = defaultData.bookImage;
 
   // read book list
 
@@ -130,6 +62,8 @@ const BookAdd = ({ mode, originalData, endAction }) => {
       });
     }
   };
+
+  const { control, handleSubmit, setValue, reset } = useForm();
 
   //update new book
 
@@ -174,13 +108,8 @@ const BookAdd = ({ mode, originalData, endAction }) => {
             <Box sx={{ width: "30%" }}>
               <Stack spacing={3}>
                 <Box>
-                  {fileName || originalData.bookImage ? (
-                    <img
-                      id="myImg"
-                      height="350"
-                      src={`${originalData.bookImage}`}
-                      alt=""
-                    />
+                  {fileName ? (
+                    <img id="myImg" height="350" src="" alt="" />
                   ) : (
                     <Typography>Upload a Cover Image</Typography>
                   )}
@@ -315,15 +244,6 @@ const BookAdd = ({ mode, originalData, endAction }) => {
                 />
                 <Button type="submit" variant="contained" color="primary">
                   Save
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    endAction("close");
-                  }}
-                >
-                  Close
                 </Button>
               </Stack>
             </Box>

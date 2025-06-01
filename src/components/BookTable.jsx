@@ -61,7 +61,7 @@ const BookTable = ({ booklist, clickAction }) => {
                 <TableCell align="center">
                   <AddIcon
                     onClick={() => {
-                      clickAction("add", 0);
+                      clickAction("add", {});
                     }}
                   />
                 </TableCell>
@@ -84,12 +84,12 @@ const BookTable = ({ booklist, clickAction }) => {
                   <TableCell align="center">
                     <EditIcon
                       onClick={() => {
-                        clickAction("edit", row.book_id);
+                        clickAction("edit", row);
                       }}
                     />
                     <DeleteIcon
                       onClick={() => {
-                        clickAction("delete", row.book_id);
+                        clickAction("delete", row);
                       }}
                     />
                   </TableCell>

@@ -58,7 +58,18 @@ const BookEdit = () => {
       case "add":
         console.log("add", id);
         setMode(actionType);
-        setId(0);
+        setId({
+          book_id: 0,
+          isbn: "",
+          title: "",
+          author: "",
+          category: "",
+          publishedYear: "",
+          copyInStock: "",
+        });
+        break;
+      case "close":
+        setMode("");
         break;
       default:
         setMode("");
@@ -66,12 +77,16 @@ const BookEdit = () => {
     }
   };
 
+  const endAction = (mode) => {
+    clickAction(mode, 0);
+  };
+
   return (
     <>
       <Box sx={{ width: 1 }}>
         <Stack>
           {mode ? (
-            <BookAdd />
+            <BookAdd mode={mode} originalData={id} endAction={endAction} />
           ) : (
             <Typography
               variant="h6"
