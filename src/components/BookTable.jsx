@@ -19,7 +19,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import BookCard from "./BookCard";
 
-const BookTable = ({ booklist, clickAction }) => {
+const BookTable = ({ booklist, clickAction, refresh }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setFilteredBooks] = useState(booklist);
 
@@ -31,7 +31,7 @@ const BookTable = ({ booklist, clickAction }) => {
       )
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm]);
+  }, [searchTerm, booklist]);
 
   return (
     <>

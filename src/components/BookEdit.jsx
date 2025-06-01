@@ -25,6 +25,7 @@ const BookEdit = () => {
   const [error, setError] = useState(null);
   const [mode, setMode] = useState("");
   const [id, setId] = useState(0);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     axios
@@ -39,7 +40,7 @@ const BookEdit = () => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [refresh]);
 
   const clickAction = (actionType, id) => {
     switch (actionType) {
@@ -70,6 +71,11 @@ const BookEdit = () => {
         break;
       case "close":
         setMode("");
+        break;
+      case "refresh":
+        console.log("mode", mode, "refresh", refresh);
+        setMode("");
+        setRefresh(!refresh);
         break;
       default:
         setMode("");
@@ -104,7 +110,11 @@ const BookEdit = () => {
                 <Skeleton variant="rectangular" height={300} />
               </Stack>
             ) : (
-              <BookTable booklist={data} clickAction={clickAction}></BookTable>
+              <BookTable
+                booklist={data}
+                clickAction={clickAction}
+                refresh={refresh}
+              ></BookTable>
             )}
           </Box>
         </Stack>

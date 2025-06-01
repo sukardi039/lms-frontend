@@ -56,13 +56,11 @@ const BookAdd = ({ mode, originalData, endAction }) => {
     "mode",
     mode
   );
-  const { control, handleSubmit, setValue, reset } = useForm({
-    defaultValues: { originalData },
-  });
+  const { control, handleSubmit, setValue, reset } = useForm();
   // set up default value
 
   useEffect(() => {
-    setValue("ibsn", originalData.ibsn);
+    setValue("isbn", originalData.isbn);
     setValue("title", originalData.title);
     setValue("author", originalData.author);
     setValue("category", originalData.category);
@@ -70,9 +68,11 @@ const BookAdd = ({ mode, originalData, endAction }) => {
     setValue("publishedYear", originalData.publishedYear);
     setValue("copyInStock", originalData.copyInStock);
     setFileName("");
+    if (originalData.bookImage) {
+      document.getElementById("myImg").src = originalData.bookImage;
+    }
   }, [originalData]);
 
-  // document.getElementById("myImg").src = originalData.bookImage;
   // useEffect(() => {
   //   if (
   //     JSON.stringify(defaultData) !== JSON.stringify(originalData) &&
@@ -134,32 +134,110 @@ const BookAdd = ({ mode, originalData, endAction }) => {
   //update new book
 
   const onSubmitAdd = (data) => {
-    // console.log(data);
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/api/books",
-      data: data,
-    })
-      .then((response) => {
-        reset({
-          isbn: "",
-          title: "",
-          author: "",
-          category: "",
-          bookImage: "",
-          publishedYear: "",
-          copyInStock: "",
-          book_id: "",
-        });
-        document.getElementById("myImg").src = null;
-        // booklist.push(response.data);
-        alert("Book Added Successfully");
-        setRefresh(!refresh);
+    console.log(data);
+    if (mode === "add") {
+      axios({
+        method: "POST",
+        url: "http://localhost:8080/api/books",
+        data: data,
       })
-      .catch((error) => {
-        setError(error);
-        console.log(error);
+        .then((response) => {
+          resetForm();
+          // reset({
+          //   isbn: "",
+          //   title: "",
+          //   author: "",
+          //   category: "",
+          //   bookImage: "",
+          //   publishedYear: "",
+          //   copyInStock: "",
+          //   book_id: "",
+          // });
+          document.getElementById("myImg").src = null;
+          // booklist.push(response.data);
+          alert("Book Added Successfully");
+          endAction("refresh");
+          // setRefresh(!refresh);
+        })
+        .catch((error) => {
+          setError(error);
+          console.log(error);
+        });
+    }
+    if (mode === "edit") {
+      axios({
+        method: "PUT",
+        url: "http://localhost:8080/api/books/" + originalData.book_id,
+        data: data,
+      })
+        .then((response) => {
+          resetForm();
+          // reset({
+          //   isbn: "",
+          //   title: "",
+          //   author: "",
+          //   category: "",
+          //   bookImage: "",
+          //   publishedYear: "",
+          //   copyInStock: "",
+          //   book_id: "",
+          // });
+          document.getElementById("myImg").src = null;
+          // booklist.push(response.data);
+          alert("Book Updated Successfully");
+          endAction("refresh");
+          // setRefresh(!refresh);
+        })
+        .catch((error) => {
+          setError(error);
+          console.log(error);
+        });
+    }
+    if (mode === "delete") {
+      axios({
+        method: "DELETE",
+        url: "http://localhost:8080/api/books/" + originalData.book_id,
+        data: data,
+      })
+        .then((response) => {
+          resetForm();
+          // reset({
+          //   isbn: "",
+          //   title: "",
+          //   author: "",
+          //   category: "",
+          //   bookImage: "",
+          //   publishedYear: "",
+          //   copyInStock: "",
+          //   book_id: "",
+          // });
+          document.getElementById("myImg").src = null;
+          // booklist.push(response.data);
+          alert("Book Deleted Successfully");
+          endAction("refresh");
+          // setRefresh(!refresh);
+        })
+        .catch((error) => {
+          setError(error);
+          console.log(error);
+        });
+    }
+    const resetForm = () => {
+      reset({
+        isbn: "",
+        title: "",
+        author: "",
+        category: "",
+        bookImage: "",
+        publishedYear: "",
+        copyInStock: "",
+        book_id: "",
       });
+      document.getElementById("myImg").src = null;
+      // booklist.push(response.data);
+      // alert("Book Added Successfully");
+      // setRefresh(!refresh);
+    };
   };
 
   return (
@@ -313,18 +391,20 @@ const BookAdd = ({ mode, originalData, endAction }) => {
                     />
                   )}
                 />
-                <Button type="submit" variant="contained" color="primary">
-                  Save
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    endAction("close");
-                  }}
-                >
-                  Close
-                </Button>
+                <Stack direction="row" spacing={2}>
+                  <Button type="submit" variant="contained" color="primary">
+                    Save
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      endAction("close");
+                    }}
+                  >
+                    Close
+                  </Button>
+                </Stack>
               </Stack>
             </Box>
           </Stack>
