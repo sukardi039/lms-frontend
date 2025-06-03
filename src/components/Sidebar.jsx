@@ -20,8 +20,8 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-
-import { BrowserRouter, HashRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { BrowserRouter, Router } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const ErrorFallback = ({ error }) => {
@@ -46,11 +46,12 @@ const Sidebar = ({ mode, setMode }) => {
       >
         {isAuthenticated ? (
           <Box position="fixed">
-            <BrowserRouter>
+            {/* <BrowserRouter> */}
+            <nav>
               {/* <ErrorBoundary FallbackComponent={ErrorFallback}> */}
               <List>
                 <ListItem disablePadding>
-                  <ListItemButton component="a" href="/home">
+                  <ListItemButton component={Link} to="/home">
                     <ListItemIcon>
                       <Home />
                     </ListItemIcon>
@@ -58,15 +59,23 @@ const Sidebar = ({ mode, setMode }) => {
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                  <ListItemButton component="a" href="/editbook">
+                  <ListItemButton component={Link} to="/editbook">
                     <ListItemIcon>
                       <Article />
                     </ListItemIcon>
                     <ListItemText primary="Books Information" />
                   </ListItemButton>
                 </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton component={Link} to="/borrow">
+                    <ListItemIcon>
+                      <Article />
+                    </ListItemIcon>
+                    <ListItemText primary="Borrow Books" />
+                  </ListItemButton>
+                </ListItem>
                 <ListItem disablePadding sx={{ display: "none" }}>
-                  <ListItemButton component="a" href="#simple-list">
+                  <ListItemButton component={Link} to="#simple-list">
                     <ListItemIcon>
                       <ModeNight />
                     </ListItemIcon>
@@ -79,7 +88,8 @@ const Sidebar = ({ mode, setMode }) => {
                 </ListItem>
               </List>
               {/* </ErrorBoundary> */}
-            </BrowserRouter>
+            </nav>
+            {/* </BrowserRouter> */}
           </Box>
         ) : null}
       </Box>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Box, Stack, Typography } from "@mui/material";
+import UserLogins from "./UserLogins";
 
 const UserDashboard = () => {
   const { isAuthenticated, username } = useContext(AuthContext);
@@ -19,6 +20,12 @@ const UserDashboard = () => {
           <Typography variant="body">
             When you are ready, click on the cart icon to borrow the book.
           </Typography>
+          <Box>
+            <Stack direction="row" spacing={3}>
+              <Box>{/* <UserLogins user={user} /> */}</Box>
+              <Box></Box>
+            </Stack>
+          </Box>
         </Stack>
       </Box>
     </>

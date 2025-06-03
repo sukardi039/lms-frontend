@@ -7,8 +7,9 @@ import styled from "styled-components";
 import axios from "axios";
 import UserDashboard from "./UserDashboard";
 import { timeStamp } from "../lib/timeStamp";
+import { encrypter } from "../lib/encrypter";
 
-const Login = () => {
+const SignIn = () => {
   const [user, setUser] = useState("");
   const [error, setError] = useState();
   const [signedIn, setSignedIn] = useState(false);
@@ -20,6 +21,7 @@ const Login = () => {
 
   const checkLogin = (data) => {
     // console.log("bf", data);
+    data.password = encrypter(data.password);
     axios({
       method: "GET",
       url:
@@ -50,30 +52,32 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const data = {};
-    data.user_id = user.user_id;
-    data.timeLogin = timeStamp();
-    console.log("bf", data);
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/api/userlogins",
-      data: data,
-    })
-      .then((response) => {
-        // booklist.push(response.data);
-        if (response.data.emailAddress === data.loginUser) {
-          console.log("af", response.data);
-        } else {
-          alert(
-            "Log in failed. Please check the supplied credential before log in again."
-          );
-        }
-        // setRefresh(!refresh);
+    if (user.user_id) {
+      const data = {};
+      data.user_id = user.user_id;
+      data.timeLogin = timeStamp();
+      console.log("bf", data);
+      axios({
+        method: "POST",
+        url: "http://localhost:8080/api/userlogins",
+        data: data,
       })
-      .catch((error) => {
-        setError(error);
-        console.log(error);
-      });
+        .then((response) => {
+          // booklist.push(response.data);
+          if (response.data.emailAddress === data.loginUser) {
+            console.log("af", response.data);
+          } else {
+            alert(
+              "Log in failed. Please check the supplied credential before log in again."
+            );
+          }
+          // setRefresh(!refresh);
+        })
+        .catch((error) => {
+          setError(error);
+          console.log(error);
+        });
+    }
   }, [signedIn, user]);
 
   // const handleSubmit = (e) => {
@@ -183,4 +187,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

@@ -23,6 +23,7 @@
     "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.56.4",
     "react-router-dom": "^7.6.1",
+    "sjcl": "^1.0.8",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {

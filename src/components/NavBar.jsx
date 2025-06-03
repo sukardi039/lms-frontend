@@ -8,7 +8,7 @@ import { Mail, Notifications } from "@mui/icons-material";
 
 import React, { useContext } from "react";
 import { useState } from "react";
-import { unstable_createContext } from "react-router-dom";
+import { Link, unstable_createContext } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const StyledToolbar = styled(Toolbar)({
@@ -56,11 +56,11 @@ const NavBar = () => {
           >
             <Notifications />
           </Badge>
-          <a href="/login">
+          <Link to="/signin">
             <AccountCircleIcon
               sx={{ display: isAuthenticated ? "none" : "bloock" }}
             />
-          </a>
+          </Link>
           <Avatar
             sx={{
               width: 30,
@@ -71,12 +71,14 @@ const NavBar = () => {
             onClick={() => setOpen(true)}
           />
           <Box variant="span">
-            <Typography
-              sx={{ display: { xs: "block", sm: "none" } }}
-              onClick={() => setOpen(true)}
-            >
-              name
-            </Typography>
+            {username && (
+              <Typography
+                sx={{ display: { xs: "block", sm: "none" } }}
+                onClick={() => setOpen(true)}
+              >
+                {username.name}
+              </Typography>
+            )}
           </Box>
         </Icon>
       </StyledToolbar>

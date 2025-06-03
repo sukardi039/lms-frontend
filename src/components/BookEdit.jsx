@@ -89,14 +89,15 @@ const BookEdit = () => {
 
   return (
     <>
-      <Box sx={{ width: 1 }}>
-        <Stack>
+      <Box sx={{ width: 1, marginTop: "3" }}>
+        <Stack spacing={3}>
           {mode ? (
             <BookAdd mode={mode} originalData={id} endAction={endAction} />
           ) : (
             <Typography
               variant="h6"
               sx={{ display: "flex", justifyContent: "center" }}
+              spacing={3}
             >
               Please select an action to maintain the collection of books.
             </Typography>

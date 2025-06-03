@@ -2,6 +2,7 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { encrypter } from "../lib/encrypter";
 
 const SignUp = () => {
   const [signedUp, setSignedUp] = useState(false);
@@ -16,6 +17,7 @@ const SignUp = () => {
     }
     data.role = "member";
     data.status = 1;
+    data.password = encrypter(data.password);
     axios({
       method: "POST",
       url: "http://localhost:8080/api/users",
@@ -193,7 +195,7 @@ const SignUp = () => {
           <Typography variant="h5">
             Thank you for signing up with our library!
           </Typography>
-          <Typography variant="h5" component="a" href="/login">
+          <Typography variant="h5" component="Link" href="/signin">
             Please login to explore our books collection.
           </Typography>
         </Box>
