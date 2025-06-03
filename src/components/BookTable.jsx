@@ -99,21 +99,6 @@ const BookTable = ({ booklist, clickAction, refresh }) => {
           </Table>
         </TableContainer>
       ) : (
-        // <Grid container space={2} sx={{ width: "95%" }}>
-        //   {books.map((book) => (
-        //     <Grid
-        //       xs={12}
-        //       sm={12}
-        //       md={6}
-        //       lg={4}
-        //       xl={4}
-        //       padding={1}
-        //       key={book.book_id}
-        //     >
-        //       <BookCard book={book}></BookCard>
-        //     </Grid>
-        //   ))}
-        // </Grid>
         <Box
           sx={{
             display: "flex",

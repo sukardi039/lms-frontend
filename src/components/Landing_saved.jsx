@@ -1,13 +1,12 @@
 import { Box, Stack, Skeleton } from "@mui/material";
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import styled from "styled-components";
 import React from "react";
 import Books from "./Books";
-// import BookAdd from "./BookAdd";
+import BookAdd from "./BookAdd";
 import BookEdit from "./BookEdit";
 import Error404 from "./Error404";
-import Login from "./Login";
-import SignUp from "./SignUp";
 // import Post from "./Post";
 
 const StyledBox = styled(Box)({
@@ -26,26 +25,15 @@ const router = createBrowserRouter([
     errorElement: <Error404 />,
   },
   {
-    path: "/home",
-    element: <Books />,
-  },
-  {
     path: "/editbook",
     element: <BookEdit />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
   },
 ]);
 
 const Landing = () => {
   return (
     <StyledBox>
+      {/* <Outlet /> */}
       {/* <Books /> */}
       <RouterProvider router={router} />
     </StyledBox>

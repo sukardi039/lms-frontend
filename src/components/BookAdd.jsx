@@ -37,17 +37,6 @@ const BookAdd = ({ mode, originalData, endAction }) => {
     copyInStock: "",
   });
 
-  // prepare form according to mode of action
-
-  // useEffect(() => {
-  //   if (
-  //     mode !== "add" &&
-  //     JSON.stringify(defaultData) !== JSON.stringify(originalData)
-  //   ) {
-  //     setDefaultData(originalData);
-  //   }
-  // }, [mode, originalData]);
-
   console.log(
     "originalData",
     originalData,
@@ -72,31 +61,6 @@ const BookAdd = ({ mode, originalData, endAction }) => {
       document.getElementById("myImg").src = originalData.bookImage;
     }
   }, [originalData]);
-
-  // useEffect(() => {
-  //   if (
-  //     JSON.stringify(defaultData) !== JSON.stringify(originalData) &&
-  //     mode !== "add"
-  //   ) {
-  //     //   setDefaultData(defaultData);
-  //     // }
-  //     // if (toRender) {
-  //     setValue("ibsn", defaultData.ibsn);
-  //     setValue("title", defaultData.title);
-  //     setValue("author", defaultData.author);
-  //     setValue("category", defaultData.category);
-  //     setValue("bookImage", defaultData.bookImage);
-  //     setValue("publishedYear", defaultData.publishedYear);
-  //     setValue("copyInStock", defaultData.copyInStock);
-  //     setFileName("");
-  //     setToRender(false);
-  //   }
-  // }, [defaultData]);
-  // document.getElementById("myImg").src = defaultData.bookImage;
-
-  // read book list
-
-  // const [imageValue, setImageValue] = useState(null);
 
   // get image file link and save to bookImage field
   useEffect(() => {
@@ -143,16 +107,6 @@ const BookAdd = ({ mode, originalData, endAction }) => {
       })
         .then((response) => {
           resetForm();
-          // reset({
-          //   isbn: "",
-          //   title: "",
-          //   author: "",
-          //   category: "",
-          //   bookImage: "",
-          //   publishedYear: "",
-          //   copyInStock: "",
-          //   book_id: "",
-          // });
           document.getElementById("myImg").src = null;
           // booklist.push(response.data);
           alert("Book Added Successfully");
@@ -172,18 +126,7 @@ const BookAdd = ({ mode, originalData, endAction }) => {
       })
         .then((response) => {
           resetForm();
-          // reset({
-          //   isbn: "",
-          //   title: "",
-          //   author: "",
-          //   category: "",
-          //   bookImage: "",
-          //   publishedYear: "",
-          //   copyInStock: "",
-          //   book_id: "",
-          // });
-          document.getElementById("myImg").src = null;
-          // booklist.push(response.data);
+          // document.getElementById("myImg").src = null;
           alert("Book Updated Successfully");
           endAction("refresh");
           // setRefresh(!refresh);
@@ -201,17 +144,7 @@ const BookAdd = ({ mode, originalData, endAction }) => {
       })
         .then((response) => {
           resetForm();
-          // reset({
-          //   isbn: "",
-          //   title: "",
-          //   author: "",
-          //   category: "",
-          //   bookImage: "",
-          //   publishedYear: "",
-          //   copyInStock: "",
-          //   book_id: "",
-          // });
-          document.getElementById("myImg").src = null;
+          // document.getElementById("myImg").src = null;
           // booklist.push(response.data);
           alert("Book Deleted Successfully");
           endAction("refresh");
@@ -234,9 +167,6 @@ const BookAdd = ({ mode, originalData, endAction }) => {
         book_id: "",
       });
       document.getElementById("myImg").src = null;
-      // booklist.push(response.data);
-      // alert("Book Added Successfully");
-      // setRefresh(!refresh);
     };
   };
 
@@ -393,7 +323,7 @@ const BookAdd = ({ mode, originalData, endAction }) => {
                 />
                 <Stack direction="row" spacing={2}>
                   <Button type="submit" variant="contained" color="primary">
-                    Save
+                    {mode === "delete" ? `Delete` : `Save`}
                   </Button>
                   <Button
                     variant="contained"

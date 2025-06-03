@@ -2,11 +2,14 @@ import { AppBar } from "@mui/material";
 import { styled, Toolbar, Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Beenhere } from "@mui/icons-material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { InputBase, Badge, Avatar, Menu, MenuItem } from "@mui/material";
 import { Mail, Notifications } from "@mui/icons-material";
 
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
+import { unstable_createContext } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -27,6 +30,7 @@ const Icon = styled(Box)({
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const { isAuthenticated, username } = useContext(AuthContext);
   return (
     <AppBar position="sticky">
       <StyledToolbar>
@@ -52,17 +56,26 @@ const NavBar = () => {
           >
             <Notifications />
           </Badge>
+          <a href="/login">
+            <AccountCircleIcon
+              sx={{ display: isAuthenticated ? "none" : "bloock" }}
+            />
+          </a>
           <Avatar
-            sx={{ width: 30, height: 30 }}
+            sx={{
+              width: 30,
+              height: 30,
+              display: isAuthenticated ? "block" : "none",
+            }}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            onClick={(e) => setOpen(true)}
+            onClick={() => setOpen(true)}
           />
           <Box variant="span">
             <Typography
               sx={{ display: { xs: "block", sm: "none" } }}
-              onClick={(e) => setOpen(true)}
+              onClick={() => setOpen(true)}
             >
-              H C Teo
+              name
             </Typography>
           </Box>
         </Icon>
@@ -81,6 +94,8 @@ const NavBar = () => {
           horizontal: "right",
         }}
       >
+        <MenuItem>Sign-up</MenuItem>
+        <MenuItem>Sign-in</MenuItem>
         <MenuItem>Profile</MenuItem>
         <MenuItem>My account</MenuItem>
         <MenuItem>Logout</MenuItem>
