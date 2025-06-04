@@ -4,20 +4,37 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState({});
+  const [currentAction, setCurrentAction] = useState(null);
+  const [thisBook, setThisBook] = useState({});
 
   const login = (user) => {
     setIsAuthenticated(true);
     setUsername(user);
+    setCurrentAction("login");
   };
 
   const logout = () => {
     setIsAuthenticated(false);
-    setUsername(null);
+    setUsername({});
+    setCurrentAction(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, username, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        username,
+        currentAction,
+        thisBook,
+        login,
+        logout,
+        setCurrentAction,
+        setThisBook,
+        setUsername,
+        setIsAuthenticated,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

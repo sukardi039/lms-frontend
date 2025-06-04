@@ -20,6 +20,10 @@ import SignIn from "./components/SignIn";
 import { Article, Home, Login, ModeNight } from "@mui/icons-material";
 import SignUp from "./components/SignUp";
 import BorrowBooks from "./components/BorrowBooks";
+import BorrowThisBook from "./components/BorrowThisBook";
+import SignOut from "./components/SignOut";
+import UserDashboard from "./components/UserDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 
 // import "./App.css";
 
@@ -39,8 +43,12 @@ function App() {
                   <Route path="/home" element={<Books />} />
                   <Route path="/editbook" element={<BookEdit />} />
                   <Route path="/borrow" element={<BorrowBooks />} />
+                  <Route path="/borrowthisbook" element={<BorrowThisBook />} />
                   <Route path="/signin" element={<SignIn />} />
                   <Route path="/signup" element={<SignUp />} />
+                  <Route path="/signout" element={<SignOut />} />
+                  <Route path="/userdashboard" element={<UserDashboard />} />
+                  <Route path="/admindashboard" element={<AdminDashboard />} />
                 </Routes>
               </Landing>
               <Rightbar />

@@ -1,6 +1,7 @@
 import {
   AccountBox,
   Article,
+  Logout,
   Group,
   Home,
   ModeNight,
@@ -58,7 +59,10 @@ const Sidebar = ({ mode, setMode }) => {
                     <ListItemText primary="Homepage" />
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "admin" ? "block" : "none" }}
+                >
                   <ListItemButton component={Link} to="/editbook">
                     <ListItemIcon>
                       <Article />
@@ -66,12 +70,23 @@ const Sidebar = ({ mode, setMode }) => {
                     <ListItemText primary="Books Information" />
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "member" ? "block" : "none" }}
+                >
                   <ListItemButton component={Link} to="/borrow">
                     <ListItemIcon>
                       <Article />
                     </ListItemIcon>
                     <ListItemText primary="Borrow Books" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton component={Link} to="/signout">
+                    <ListItemIcon>
+                      <Logout />
+                    </ListItemIcon>
+                    <ListItemText primary="Log Out" />
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding sx={{ display: "none" }}>

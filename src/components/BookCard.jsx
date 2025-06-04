@@ -6,10 +6,35 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const BookCard = ({ book }) => {
+  const { isAuthenticated, username, setThisBook } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const cardClicked = () => {
+    if (isAuthenticated) {
+      let url = window.location.href;
+      // console.log("url", url);
+      let ura = url.split("/");
+      // console.log("ura", ura);
+      if (ura[3] == "borrow") {
+        // console.log(book);
+        setThisBook(book);
+        navigate("/borrowthisbook?id=" + book.book_id);
+      }
+    }
+  };
+
   return (
-    <Card margin={2} padding={2} sx={{ width: "100%", maxWidth: 270 }}>
+    <Card
+      margin={2}
+      padding={2}
+      sx={{ width: "100%", maxWidth: 270 }}
+      onClick={cardClicked}
+    >
       <Grid container spacing={2}>
         <Grid size={4} sx={{ justifyContent: "center" }}>
           <img
@@ -45,7 +70,9 @@ const BookCard = ({ book }) => {
             <Typography variant="body2">Author</Typography>
           </Grid>
           <Grid size={7}>
-            <Typography variant="body">{book.author}</Typography>
+            <Typography variant="body" overflow="ellipsis">
+              {book.author}
+            </Typography>
           </Grid>
           <Grid size={5}>
             <Typography variant="body2">Year Published</Typography>
@@ -59,12 +86,16 @@ const BookCard = ({ book }) => {
           <Grid size={7}>
             <Typography variant="body">{book.category}</Typography>
           </Grid>
-          <Grid size={5}>
-            <Typography variant="body2">Copies</Typography>
-          </Grid>
-          <Grid size={7}>
-            <Typography variant="body">{book.copyInStock}</Typography>
-          </Grid>
+          {username.role == "admin" && (
+            <Grid size={5}>
+              <Typography variant="body2">Copies</Typography>
+            </Grid>
+          )}
+          {username.role == "admin" && (
+            <Grid size={7}>
+              <Typography variant="body">{book.copyInStock}</Typography>
+            </Grid>
+          )}
         </Grid>
       </CardContent>
     </Card>

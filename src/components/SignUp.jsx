@@ -2,6 +2,7 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { encrypter } from "../lib/encrypter";
 
 const SignUp = () => {
@@ -9,6 +10,8 @@ const SignUp = () => {
   const [error, setError] = useState();
 
   const { control, handleSubmit, setValue, reset } = useForm();
+
+  const navigate = useNavigate();
 
   const createUser = (data) => {
     if (data.password != data.confirmPassword) {
@@ -195,8 +198,13 @@ const SignUp = () => {
           <Typography variant="h5">
             Thank you for signing up with our library!
           </Typography>
-          <Typography variant="h5" component="Link" href="/signin">
-            Please login to explore our books collection.
+          <Typography
+            variant="h5"
+            onClick={() => {
+              navigate("/signin");
+            }}
+          >
+            Please click here to login to explore our books collection.
           </Typography>
         </Box>
       )}

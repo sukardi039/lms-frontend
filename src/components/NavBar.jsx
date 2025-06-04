@@ -57,9 +57,17 @@ const NavBar = () => {
             <Notifications />
           </Badge>
           <Link to="/signin">
-            <AccountCircleIcon
-              sx={{ display: isAuthenticated ? "none" : "bloock" }}
+            <Avatar
+              sx={{
+                width: 30,
+                height: 30,
+                display: isAuthenticated ? "none" : "block",
+              }}
+              src="images/default.png"
             />
+            {/* <AccountCircleIcon
+              sx={{ display: isAuthenticated ? "none" : "bloock" }}
+            /> */}
           </Link>
           <Avatar
             sx={{
@@ -82,7 +90,7 @@ const NavBar = () => {
           </Box>
         </Icon>
       </StyledToolbar>
-      <Menu
+      {/* <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         open={open}
@@ -101,7 +109,7 @@ const NavBar = () => {
         <MenuItem>Profile</MenuItem>
         <MenuItem>My account</MenuItem>
         <MenuItem>Logout</MenuItem>
-      </Menu>
+      </Menu> */}
     </AppBar>
   );
 };

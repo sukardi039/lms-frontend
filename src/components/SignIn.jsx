@@ -56,7 +56,7 @@ const SignIn = () => {
       const data = {};
       data.user_id = user.user_id;
       data.timeLogin = timeStamp();
-      console.log("bf", data);
+      // console.log("bf", data);
       axios({
         method: "POST",
         url: "http://localhost:8080/api/userlogins",
@@ -64,12 +64,15 @@ const SignIn = () => {
       })
         .then((response) => {
           // booklist.push(response.data);
-          if (response.data.emailAddress === data.loginUser) {
-            console.log("af", response.data);
-          } else {
-            alert(
-              "Log in failed. Please check the supplied credential before log in again."
-            );
+          switch (username.role) {
+            case "admin":
+              navigate("/admindashboard");
+              break;
+            case "member":
+              navigate("/userdashboard");
+              break;
+            default:
+              break;
           }
           // setRefresh(!refresh);
         })
@@ -104,84 +107,75 @@ const SignIn = () => {
     //   }}
     // >
     <>
-      {isAuthenticated ? (
-        <UserDashboard />
-      ) : (
-        <Box
-          component="form"
-          onSubmit={handleSubmit(checkLogin)}
-          sx={{ p: 2, width: 1 }}
-        >
-          <Box>
-            <Stack spacing={3}>
-              <Typography variant="h4" spacing={3}>
-                Welcome to our Library!
-              </Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit(checkLogin)}
+        sx={{ p: 2, width: 1 }}
+      >
+        <Box>
+          <Stack spacing={3}>
+            <Typography variant="h4" spacing={3}>
+              Welcome to our Library!
+            </Typography>
 
-              <Typography variant="h6">
-                Please enter your user name and password to access.
-              </Typography>
+            <Typography variant="h6">
+              Please enter your user name and password to access.
+            </Typography>
 
-              <Controller
-                name="loginUser"
-                control={control}
-                rules={{
-                  required: "Please Enter Your Name to Log In",
-                  min: 8,
-                }}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    variant="standard"
-                    label="User Name"
-                    error={!!error}
-                    helperText={error?.message}
-                    fullWidth
-                  />
-                )}
-              />
-              <Controller
-                name="password"
-                control={control}
-                rules={{
-                  required: "Please supply the correct credential.",
-                  min: 8,
-                }}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    variant="standard"
-                    label="Password"
-                    type="password"
-                    error={!!error}
-                    helperText={error?.message}
-                    fullWidth
-                  />
-                )}
-              />
-              <Button type="submit" variant="contained" color="primary">
-                Login
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                component="a"
-                href="/signup"
-              >
-                Sign-up
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                component="a"
-                href="/"
-              >
-                I will do it later
-              </Button>
-            </Stack>
-          </Box>
+            <Controller
+              name="loginUser"
+              control={control}
+              rules={{
+                required: "Please Enter Your Name to Log In",
+                min: 8,
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <TextField
+                  {...field}
+                  variant="standard"
+                  label="User Name"
+                  error={!!error}
+                  helperText={error?.message}
+                  fullWidth
+                />
+              )}
+            />
+            <Controller
+              name="password"
+              control={control}
+              rules={{
+                required: "Please supply the correct credential.",
+                min: 8,
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <TextField
+                  {...field}
+                  variant="standard"
+                  label="Password"
+                  type="password"
+                  error={!!error}
+                  helperText={error?.message}
+                  fullWidth
+                />
+              )}
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              component="a"
+              href="/signup"
+            >
+              Sign-up
+            </Button>
+            <Button variant="contained" color="primary" component="a" href="/">
+              I will do it later
+            </Button>
+          </Stack>
         </Box>
-      )}
+      </Box>
     </>
     // </StyledBox>
   );
