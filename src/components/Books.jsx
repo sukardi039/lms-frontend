@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Box, Skeleton, Stack, Typography } from "@mui/material";
 import BookGrid from "./BookGrid";
+import { AuthContext } from "../context/AuthContext";
 
 const Books = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { isAuthenticated, username } = useContext(AuthContext);
 
   useEffect(() => {
+    let burl = window.location.href;
+    // console.log("url", url);
+    let ura = burl.split("/");
+    let url = "http://localhost:8080/api/books";
+    if (ura[3] == "return") {
+      url = url + "/borrowed/" + username.user_id;
+    }
     axios
-      .get("http://localhost:8080/api/books")
+      .get(url)
       .then((response) => {
         // console.log(response);
         setData(response.data);

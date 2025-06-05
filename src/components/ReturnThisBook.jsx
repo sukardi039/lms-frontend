@@ -2,13 +2,11 @@ import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { timeStamp } from "../lib/timeStamp";
-import { threeWeeksFromNow } from "../lib/threeWeeksFromNow";
 import BookCard from "./BookCard";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 
-const BorrowThisBook = () => {
+const ReturnThisBook = () => {
   const MAX_BORROW = 3;
 
   const [error, setError] = useState();
@@ -16,29 +14,34 @@ const BorrowThisBook = () => {
   const { isAuthenticated, username, setThisBook, thisBook } =
     useContext(AuthContext);
   const navigate = useNavigate();
-  const { control, handleSubmit, setValue, reset } = useForm();
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
 
-  const borrowThisBook = (bookId) => {
-    console.log("borrow book ", bookId);
+  // to code for returning books
+
+  const returnThisBook = (bookId) => {
+    console.log("return book ", bookId);
     const bookData = {};
-    bookData.book_id = bookId;
-    bookData.user_id = username.user_id;
-    bookData.borrowedDate = timeStamp();
-    bookData.returnDate = threeWeeksFromNow();
-    bookData.status = 1;
+    // bookData.book_id = bookId;
+    // bookData.user_id = username.user_id;
+    bookData.actualReturnDate = timeStamp();
+    // bookData.returnDate = threeWeeksFromNow();
+    // bookData.status = 1;
     axios({
-      method: "POST",
-      url: "http://localhost:8080/api/borrowedbooks",
+      method: "PUT",
+      url:
+        "http://localhost:8080/api/borrowedbooks/return/" +
+        username.user_id +
+        "/" +
+        bookId,
       data: bookData,
     })
       .then((response) => {
         resetForm();
-        alert("Book Borrow Successfully");
-        navigate("/borrow");
+        alert("Book Return Successfully");
+        navigate("/return");
         // setRefresh(!refresh);
       })
       .catch((error) => {
@@ -48,7 +51,7 @@ const BorrowThisBook = () => {
   };
 
   const notNow = () => {
-    navigate("/borrow");
+    navigate("/return");
   };
 
   const resetForm = () => {
@@ -76,14 +79,13 @@ const BorrowThisBook = () => {
           <BookCard book={thisBook} />
           <Divider></Divider>
           <Typography sx={{ display: "flex", justifyContent: "center" }}>
-            Good choice! Would you like to borrow it?
+            Would you like to return it?
           </Typography>
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              component: "form",
             }}
           >
             <Stack direction="row">
@@ -91,10 +93,10 @@ const BorrowThisBook = () => {
                 variant="solid"
                 size="lg"
                 onClick={() => {
-                  borrowThisBook(thisBook.book_id);
+                  returnThisBook(thisBook.book_id);
                 }}
               >
-                Borrow
+                Return
               </Button>
               <Button
                 variant="solid"
@@ -113,4 +115,4 @@ const BorrowThisBook = () => {
   );
 };
 
-export default BorrowThisBook;
+export default ReturnThisBook;

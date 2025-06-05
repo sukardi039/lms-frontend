@@ -1,5 +1,7 @@
 import {
   AccountBox,
+  LocalLibrary,
+  LibraryBooks,
   Article,
   Logout,
   Group,
@@ -8,7 +10,6 @@ import {
   Person,
   Settings,
   Storefront,
-  LibraryBooks,
 } from "@mui/icons-material";
 import {
   Box,
@@ -76,9 +77,20 @@ const Sidebar = ({ mode, setMode }) => {
                 >
                   <ListItemButton component={Link} to="/borrow">
                     <ListItemIcon>
-                      <Article />
+                      <LocalLibrary />
                     </ListItemIcon>
                     <ListItemText primary="Borrow Books" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "member" ? "block" : "none" }}
+                >
+                  <ListItemButton component={Link} to="/return">
+                    <ListItemIcon>
+                      <LibraryBooks />
+                    </ListItemIcon>
+                    <ListItemText primary="Return Books" />
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>

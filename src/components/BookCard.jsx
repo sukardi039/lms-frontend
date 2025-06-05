@@ -25,6 +25,11 @@ const BookCard = ({ book }) => {
         setThisBook(book);
         navigate("/borrowthisbook?id=" + book.book_id);
       }
+      if (ura[3] == "return") {
+        // console.log(book);
+        setThisBook(book);
+        navigate("/returnthisbook?id=" + book.book_id);
+      }
     }
   };
 
