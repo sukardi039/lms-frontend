@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { timeStamp } from "../lib/timeStamp";
-import { threeWeeksFromNow } from "../lib/threeWeeksFromNow";
+import { twoWeeksFromNow } from "../lib/twoWeeksFromNow";
 import BookCard from "./BookCard";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import axios from "axios";
@@ -28,7 +28,7 @@ const BorrowThisBook = () => {
     bookData.book_id = bookId;
     bookData.user_id = username.user_id;
     bookData.borrowedDate = timeStamp();
-    bookData.returnDate = threeWeeksFromNow();
+    bookData.returnDate = twoWeeksFromNow();
     bookData.status = 1;
     axios({
       method: "POST",
@@ -37,7 +37,13 @@ const BorrowThisBook = () => {
     })
       .then((response) => {
         resetForm();
-        alert("Book Borrow Successfully");
+        if (response.data.book_id == bookId) {
+          alert("Book Borrow Successfully");
+        } else {
+          alert(
+            "Book not available or you may have violated our conditions for book borrowing!"
+          );
+        }
         navigate("/borrow");
         // setRefresh(!refresh);
       })

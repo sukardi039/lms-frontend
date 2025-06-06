@@ -25,10 +25,10 @@ const Rightbar = () => {
       }}
     >
       <Box position="fixed">
-        {action == "borrow" && (
+        {action == "x_borrow" && (
           <Typography>Please click on the a book to borrow</Typography>
         )}
-        {action == "return" && (
+        {action == "x_return" && (
           <Typography>Please click on the book to return</Typography>
         )}
       </Box>
