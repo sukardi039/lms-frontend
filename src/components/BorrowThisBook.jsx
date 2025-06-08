@@ -13,8 +13,14 @@ const BorrowThisBook = () => {
 
   const [error, setError] = useState();
 
-  const { isAuthenticated, username, setThisBook, thisBook } =
-    useContext(AuthContext);
+  const {
+    isAuthenticated,
+    username,
+    setThisBook,
+    thisBook,
+    refresh,
+    setRefresh,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
   const { control, handleSubmit, setValue, reset } = useForm();
 
@@ -39,12 +45,13 @@ const BorrowThisBook = () => {
         resetForm();
         if (response.data.book_id == bookId) {
           alert("Book Borrow Successfully");
+          setRefresh(!refresh);
+          navigate("/borrow");
         } else {
           alert(
             "Book not available or you may have violated our conditions for book borrowing!"
           );
         }
-        navigate("/borrow");
         // setRefresh(!refresh);
       })
       .catch((error) => {

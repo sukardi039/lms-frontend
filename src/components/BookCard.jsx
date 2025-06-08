@@ -30,6 +30,11 @@ const BookCard = ({ book }) => {
         setThisBook(book);
         navigate("/returnthisbook?id=" + book.book_id);
       }
+      if (ura[3] == "renew") {
+        // console.log(book);
+        setThisBook(book);
+        navigate("/renewthisbook?id=" + book.book_id);
+      }
     }
   };
 

@@ -13,11 +13,13 @@ const SignIn = () => {
   const [user, setUser] = useState("");
   const [error, setError] = useState();
   const [signedIn, setSignedIn] = useState(false);
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { isAuthenticated, username } = useContext(AuthContext);
+  const { isAuthenticated, login, username, setCurrentAction } =
+    useContext(AuthContext);
   const { control, handleSubmit, setValue, reset } = useForm();
+
+  setCurrentAction("signin");
 
   const checkLogin = (data) => {
     // console.log("bf", data);
@@ -37,7 +39,9 @@ const SignIn = () => {
           // console.log("af login", data);
           login(response.data);
           setUser(response.data);
+          setCurrentAction("signedin");
           setSignedIn(true);
+          // alert("Welcome to our library!");
         } else {
           alert(
             "Log in failed. Please check the supplied credential before log in again."

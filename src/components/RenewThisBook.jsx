@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { timeStamp } from "../lib/timeStamp";
-import { overdueDays } from "../lib/overdueDays";
+import { twoMoreWeeks } from "../lib/twoMoreWeeks";
 import BookCard from "./BookCard";
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import axios from "axios";
 
-const ReturnThisBook = () => {
+const RenewThisBook = () => {
   const {
     isAuthenticated,
     username,
@@ -23,22 +22,24 @@ const ReturnThisBook = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(
-        "http://localhost:8080/api/borrowedbooks/" +
-          username.user_id +
-          "/" +
-          thisBook.book_id
-      )
-      .then((response) => {
-        console.log(response);
-        setBorrowRecord(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    if (thisBook.book_id) {
+      axios
+        .get(
+          "http://localhost:8080/api/borrowedbooks/renewable/" +
+            username.user_id +
+            "/" +
+            thisBook.book_id
+        )
+        .then((response) => {
+          console.log(response);
+          setBorrowRecord(response.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    }
   }, [thisBook, username.user_id]);
 
   const location = useLocation();
@@ -47,22 +48,22 @@ const ReturnThisBook = () => {
 
   // to code for returning books
 
-  const returnThisBook = (bookId) => {
-    console.log("return book ", bookId);
+  const renewThisBook = (bookId) => {
+    console.log("renew book ", bookId);
     const bookData = {};
     // bookData.book_id = bookId;
     // bookData.user_id = username.user_id;
-    bookData.actualReturnDate = timeStamp();
-    bookData.overdue = overdueDays(
-      borrowRecord.returnDate,
-      bookData.actualReturnDate
-    );
+    console.log("before", borrowRecord.returnDate);
+    bookData.returnDate = twoMoreWeeks(borrowRecord.returnDate);
+    console.log("after", bookData.returnDate);
+    bookData.renewed = 1;
+    bookData.borrow_id = borrowRecord.borrow_id;
     // bookData.returnDate = threeWeeksFromNow();
     // bookData.status = 1;
     axios({
       method: "PUT",
       url:
-        "http://localhost:8080/api/borrowedbooks/return/" +
+        "http://localhost:8080/api/borrowedbooks/renew/" +
         borrowRecord.borrow_id,
       data: bookData,
     })
@@ -77,9 +78,9 @@ const ReturnThisBook = () => {
               " days late in returning this book."
           );
         }
-        alert("Book Return Successfully");
+        alert("Book Renewed Successfully");
         setRefresh(!refresh);
-        navigate("/return");
+        navigate("/renew");
         // setRefresh(!refresh);
       })
       .catch((error) => {
@@ -89,7 +90,7 @@ const ReturnThisBook = () => {
   };
 
   const notNow = () => {
-    navigate("/return");
+    navigate("/renew");
   };
 
   const resetForm = () => {
@@ -135,10 +136,10 @@ const ReturnThisBook = () => {
                   variant="solid"
                   size="lg"
                   onClick={() => {
-                    returnThisBook(thisBook.book_id);
+                    renewThisBook(thisBook.book_id);
                   }}
                 >
-                  Return
+                  Renew
                 </Button>
                 <Button
                   variant="solid"
@@ -158,4 +159,4 @@ const ReturnThisBook = () => {
   );
 };
 
-export default ReturnThisBook;
+export default RenewThisBook;

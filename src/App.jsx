@@ -21,11 +21,14 @@ import { Article, Home, Login, ModeNight } from "@mui/icons-material";
 import SignUp from "./components/SignUp";
 import BorrowBooks from "./components/BorrowBooks";
 import ReturnBooks from "./components/ReturnBooks";
+import RenewBooks from "./components/RenewBooks";
 import BorrowThisBook from "./components/BorrowThisBook";
 import SignOut from "./components/SignOut";
 import UserDashboard from "./components/UserDashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import ReturnThisBook from "./components/ReturnThisBook";
+import TermsAndConditions from "./components/TermsAndConditions";
+import RenewThisBook from "./components/RenewThisBook";
 
 // import "./App.css";
 
@@ -46,8 +49,11 @@ function App() {
                   <Route path="/editbook" element={<BookEdit />} />
                   <Route path="/borrow" element={<BorrowBooks />} />
                   <Route path="/return" element={<ReturnBooks />} />
+                  <Route path="/renew" element={<RenewBooks />} />
                   <Route path="/borrowthisbook" element={<BorrowThisBook />} />
                   <Route path="/returnthisbook" element={<ReturnThisBook />} />
+                  <Route path="/renewthisbook" element={<RenewThisBook />} />
+                  <Route path="/tnc" element={<TermsAndConditions />} />
                   <Route path="/signin" element={<SignIn />} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route path="/signout" element={<SignOut />} />

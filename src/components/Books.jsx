@@ -19,6 +19,9 @@ const Books = () => {
     if (ura[3] == "return") {
       url = url + "/borrowed/" + username.user_id;
     }
+    if (ura[3] == "renew") {
+      url = url + "/renew/" + username.user_id;
+    }
     axios
       .get(url)
       .then((response) => {

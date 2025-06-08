@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
+import { AuthContext } from "../context/AuthContext";
+import BorrowedList from "./BorrowedList";
+import OverdueList from "./OverdueList";
+import OutstandingList from "./OutstandingList";
 
 const Rightbar = () => {
   const [action, setAction] = useState(null);
+  const { isAuthenticated, username, currentAction } = useContext(AuthContext);
 
-  useEffect(() => {
-    let burl = window.location.href;
-    console.log("url", burl);
-    let ura = burl.split("/");
-    setAction(ura[3]);
-  }, [window.location.href]);
   return (
     <Box
       flex={2}
@@ -24,12 +23,37 @@ const Rightbar = () => {
         width: "15%",
       }}
     >
-      <Box position="fixed">
-        {action == "x_borrow" && (
-          <Typography>Please click on the a book to borrow</Typography>
+      <Box>
+        {currentAction == "borrow" && (
+          <>
+            {/* <Typography>Please click on the a book to borrow</Typography> */}
+            <BorrowedList />
+            <OverdueList />
+            <OutstandingList />
+          </>
         )}
-        {action == "x_return" && (
-          <Typography>Please click on the book to return</Typography>
+        {currentAction == "return" && (
+          <>
+            {/* <Typography>Please click on the book to return</Typography> */}
+            <BorrowedList />
+            <OverdueList />
+            <OutstandingList />
+          </>
+        )}
+        {currentAction == "signin" && (
+          <>
+            <Typography>
+              Please provide your username (email address) and password to sign
+              in
+            </Typography>
+          </>
+        )}
+        {currentAction == "edit" && (
+          <>
+            <Typography>
+              Use this function to maintain our book record
+            </Typography>
+          </>
         )}
       </Box>
     </Box>

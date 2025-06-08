@@ -3,10 +3,10 @@ import Books from "./Books";
 import { Box, Stack, Typography } from "@mui/material";
 import { AuthContext } from "../context/AuthContext";
 
-const ReturnBooks = () => {
+const RenewBooks = () => {
   const { isAuthenticated, username, setCurrentAction } =
     useContext(AuthContext);
-  setCurrentAction("return");
+  setCurrentAction("renew");
   return (
     <>
       <Books />
@@ -14,4 +14,4 @@ const ReturnBooks = () => {
   );
 };
 
-export default ReturnBooks;
+export default RenewBooks;

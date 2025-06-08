@@ -42,7 +42,7 @@ const NavBar = () => {
         </Typography>
         <Beenhere sx={{ display: { sm: "block", md: "none" } }} />
         <Icon>
-          <Badge
+          {/* <Badge
             color="error"
             badgeContent={2}
             sx={{ display: { xs: "none", sm: "block" } }}
@@ -55,7 +55,12 @@ const NavBar = () => {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Notifications />
-          </Badge>
+          </Badge> */}
+          {isAuthenticated && (
+            <Box>
+              <Typography>{username.name}</Typography>
+            </Box>
+          )}
           <Link to="/signin">
             <Avatar
               sx={{
@@ -78,7 +83,7 @@ const NavBar = () => {
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             onClick={() => setOpen(true)}
           />
-          <Box variant="span">
+          {/* <Box variant="span">
             {username && (
               <Typography
                 sx={{ display: { xs: "block", sm: "none" } }}
@@ -87,7 +92,7 @@ const NavBar = () => {
                 {username.name}
               </Typography>
             )}
-          </Box>
+          </Box> */}
         </Icon>
       </StyledToolbar>
       {/* <Menu

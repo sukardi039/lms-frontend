@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [username, setUsername] = useState({});
   const [currentAction, setCurrentAction] = useState(null);
   const [thisBook, setThisBook] = useState({});
+  const [refresh, setRefresh] = useState(true);
 
   const login = (user) => {
     setIsAuthenticated(true);
@@ -27,12 +28,14 @@ const AuthProvider = ({ children }) => {
         username,
         currentAction,
         thisBook,
+        refresh,
         login,
         logout,
         setCurrentAction,
         setThisBook,
         setUsername,
         setIsAuthenticated,
+        setRefresh,
       }}
     >
       {children}

@@ -15,9 +15,11 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BookTable from "./BookTable";
 import BookAdd from "./BookAdd";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const BookEdit = () => {
   const [data, setData] = useState([]);
@@ -26,6 +28,18 @@ const BookEdit = () => {
   const [mode, setMode] = useState("");
   const [id, setId] = useState(0);
   const [refresh, setRefresh] = useState(false);
+
+  const { isAuthenticated, username, setCurrentAction } =
+    useContext(AuthContext);
+  setCurrentAction("edit");
+  // return to home page when user is not log in
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAuthenticated || !username) {
+      setCurrentAction("");
+      navigate("/");
+    }
+  });
 
   useEffect(() => {
     axios
@@ -89,19 +103,20 @@ const BookEdit = () => {
 
   return (
     <>
-      <Box sx={{ width: 1, marginTop: "3" }}>
+      <Box sx={{ width: 1, marginTop: "20px" }}>
         <Stack spacing={3}>
           {mode ? (
             <BookAdd mode={mode} originalData={id} endAction={endAction} />
-          ) : (
-            <Typography
-              variant="h6"
-              sx={{ display: "flex", justifyContent: "center" }}
-              spacing={3}
-            >
-              Please select an action to maintain the collection of books.
-            </Typography>
-          )}
+          ) : // <Typography
+          //   variant="h6"
+          //   sx={{
+          //     display: "flex",
+          //     justifyContent: "center",
+          //   }}
+          // >
+          //   Please select an action to maintain the collection of books.
+          // </Typography>
+          null}
           <Box flex={4} p={{ xs: 0, md: 2 }}>
             {loading ? (
               <Stack spacing={1}>

@@ -4,6 +4,8 @@ import {
   LibraryBooks,
   Article,
   Logout,
+  Refresh,
+  Gavel,
   Group,
   Home,
   ModeNight,
@@ -52,8 +54,22 @@ const Sidebar = ({ mode, setMode }) => {
             <nav>
               {/* <ErrorBoundary FallbackComponent={ErrorFallback}> */}
               <List>
-                <ListItem disablePadding>
-                  <ListItemButton component={Link} to="/home">
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "admin" ? "block" : "none" }}
+                >
+                  <ListItemButton component={Link} to="/admindashboard">
+                    <ListItemIcon>
+                      <Home />
+                    </ListItemIcon>
+                    <ListItemText primary="Homepage" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "member" ? "block" : "none" }}
+                >
+                  <ListItemButton component={Link} to="/userdashboard">
                     <ListItemIcon>
                       <Home />
                     </ListItemIcon>
@@ -91,6 +107,28 @@ const Sidebar = ({ mode, setMode }) => {
                       <LibraryBooks />
                     </ListItemIcon>
                     <ListItemText primary="Return Books" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "member" ? "block" : "none" }}
+                >
+                  <ListItemButton component={Link} to="/renew">
+                    <ListItemIcon>
+                      <Refresh />
+                    </ListItemIcon>
+                    <ListItemText primary="Renew Books" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  sx={{ display: username.role == "member" ? "block" : "none" }}
+                >
+                  <ListItemButton component={Link} to="/tnc">
+                    <ListItemIcon>
+                      <Gavel />
+                    </ListItemIcon>
+                    <ListItemText primary="Terms and Conditions" />
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>

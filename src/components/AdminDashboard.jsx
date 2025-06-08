@@ -1,10 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Box, Stack, Typography } from "@mui/material";
 import UserLogins from "./UserLogins";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
-  const { isAuthenticated, username } = useContext(AuthContext);
+  const { isAuthenticated, username, setCurrentAction } =
+    useContext(AuthContext);
+  setCurrentAction("");
+  // return to home page when user is not log in
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAuthenticated || !username) {
+      setCurrentAction("");
+      navigate("/");
+    }
+  });
+
+  setCurrentAction("");
 
   return (
     <>
