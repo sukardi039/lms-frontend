@@ -22,6 +22,7 @@ import SignUp from "./components/SignUp";
 import BorrowBooks from "./components/BorrowBooks";
 import ReturnBooks from "./components/ReturnBooks";
 import RenewBooks from "./components/RenewBooks";
+import Payment from "./components/Payment";
 import BorrowThisBook from "./components/BorrowThisBook";
 import SignOut from "./components/SignOut";
 import UserDashboard from "./components/UserDashboard";
@@ -47,6 +48,7 @@ function App() {
                   <Route path="/" element={<Books />} />
                   <Route path="/home" element={<Books />} />
                   <Route path="/editbook" element={<BookEdit />} />
+                  <Route path="/payment" element={<Payment />} />
                   <Route path="/borrow" element={<BorrowBooks />} />
                   <Route path="/return" element={<ReturnBooks />} />
                   <Route path="/renew" element={<RenewBooks />} />

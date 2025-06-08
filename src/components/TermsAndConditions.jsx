@@ -23,8 +23,30 @@ const TermsAndConditions = () => {
             <li>A member can borrow maximum 3 books from our library.</li>
             <li>Each book can be on loan to member for 14 days.</li>
             <li>
+              Member may collect books borrowed through this portal from the
+              book collection box, after 2pm on the next business day using
+              his/her email address and password used during membership
+              registration.
+            </li>
+            <li>
+              Our business days are Monday to Friday, except public holidays.
+            </li>
+            <li>
               Members shall return the books borrowed on or before the stated
               date of return.
+            </li>
+            <li>
+              Member shall register books to be returned through this portal and
+              deposit the books into the book collection box, within 24 hours,
+              using his/her email address and password used during membership
+              registration.
+            </li>
+            <li>
+              Sensers in book deposit box will verify the exact match of books
+              return against registerd books' return list. Members are
+              responsible to place the exact number and title of books into the
+              book deposit box. Failure to return the registered books in full
+              will void the books' return list.
             </li>
             <li>
               Member may renew the borrowed book for another 14 days before the
@@ -36,8 +58,8 @@ const TermsAndConditions = () => {
               not reutrned on or before the stated date of return.
             </li>
             <li>
-              Member will not be allowed to borrow books when any on the
-              borrowed books are not return after the date of return.
+              Member will not be allowed to borrow books when any of the
+              borrowed books are not return after due date.
             </li>
             <li>
               Member will be barred from borrowing books when the accumulative
@@ -46,11 +68,11 @@ const TermsAndConditions = () => {
             <li>
               Member whom have borrowed any book(s) from our library is
               automatocally considered as agreeing with this terms and
-              conditions, and deemed to be bounded by thee terms.
+              conditions, and deemed to be bounded by these terms.
             </li>
             <li>
-              Our library may change, make additions or deletions to these
-              conditions without prior notice.
+              Our library may change, add or delete these conditions when deemed
+              necessary by us, without prior notice.
             </li>
           </ul>
         </Stack>

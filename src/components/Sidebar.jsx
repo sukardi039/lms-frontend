@@ -6,6 +6,8 @@ import {
   Logout,
   Refresh,
   Gavel,
+  Payments,
+  ReplyAll,
   Group,
   Home,
   ModeNight,
@@ -54,83 +56,79 @@ const Sidebar = ({ mode, setMode }) => {
             <nav>
               {/* <ErrorBoundary FallbackComponent={ErrorFallback}> */}
               <List>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "admin" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/admindashboard">
-                    <ListItemIcon>
-                      <Home />
-                    </ListItemIcon>
-                    <ListItemText primary="Homepage" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "member" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/userdashboard">
-                    <ListItemIcon>
-                      <Home />
-                    </ListItemIcon>
-                    <ListItemText primary="Homepage" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "admin" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/editbook">
-                    <ListItemIcon>
-                      <Article />
-                    </ListItemIcon>
-                    <ListItemText primary="Books Information" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "member" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/borrow">
-                    <ListItemIcon>
-                      <LocalLibrary />
-                    </ListItemIcon>
-                    <ListItemText primary="Borrow Books" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "member" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/return">
-                    <ListItemIcon>
-                      <LibraryBooks />
-                    </ListItemIcon>
-                    <ListItemText primary="Return Books" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "member" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/renew">
-                    <ListItemIcon>
-                      <Refresh />
-                    </ListItemIcon>
-                    <ListItemText primary="Renew Books" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  disablePadding
-                  sx={{ display: username.role == "member" ? "block" : "none" }}
-                >
-                  <ListItemButton component={Link} to="/tnc">
-                    <ListItemIcon>
-                      <Gavel />
-                    </ListItemIcon>
-                    <ListItemText primary="Terms and Conditions" />
-                  </ListItemButton>
-                </ListItem>
+                {username.role == "admin" && (
+                  <>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/admindashboard">
+                        <ListItemIcon>
+                          <Home />
+                        </ListItemIcon>
+                        <ListItemText primary="Homepage" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/editbook">
+                        <ListItemIcon>
+                          <Article />
+                        </ListItemIcon>
+                        <ListItemText primary="Books Information" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/payment">
+                        <ListItemIcon>
+                          <Payments />
+                        </ListItemIcon>
+                        <ListItemText primary="Fees Payment" />
+                      </ListItemButton>
+                    </ListItem>
+                  </>
+                )}
+                {username.role == "member" && (
+                  <>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/userdashboard">
+                        <ListItemIcon>
+                          <Home />
+                        </ListItemIcon>
+                        <ListItemText primary="Homepage" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/borrow">
+                        <ListItemIcon>
+                          <LocalLibrary />
+                        </ListItemIcon>
+                        <ListItemText primary="Borrow Books" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/return">
+                        <ListItemIcon>
+                          <ReplyAll />
+                        </ListItemIcon>
+                        <ListItemText primary="Return Books" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/renew">
+                        <ListItemIcon>
+                          <Refresh />
+                        </ListItemIcon>
+                        <ListItemText primary="Renew Books" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/tnc">
+                        <ListItemIcon>
+                          <Gavel />
+                        </ListItemIcon>
+                        <ListItemText primary="Terms and Conditions" />
+                      </ListItemButton>
+                    </ListItem>
+                  </>
+                )}
+
                 <ListItem disablePadding>
                   <ListItemButton component={Link} to="/signout">
                     <ListItemIcon>
@@ -145,7 +143,7 @@ const Sidebar = ({ mode, setMode }) => {
                       <ModeNight />
                     </ListItemIcon>
                     <Switch
-                      onChange={(e) =>
+                      onChange={() =>
                         setMode(mode === "light" ? "dark" : "light")
                       }
                     />

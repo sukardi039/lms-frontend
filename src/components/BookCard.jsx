@@ -45,7 +45,7 @@ const BookCard = ({ book }) => {
       sx={{ width: "100%", maxWidth: 270 }}
       onClick={cardClicked}
     >
-      <Grid container spacing={2} bgcolor={`rgba(207, 185, 245, 0.3)`}>
+      <Grid container spacing={2} bgcolor={`rgba(207, 185, 245, 0.4)`}>
         <Grid size={4} sx={{ justifyContent: "center" }}>
           <img
             // id={book.bookImage}

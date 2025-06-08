@@ -19,29 +19,24 @@ const OutstandingList = () => {
   const [error, setError] = useState();
   const [outstanding, setOutstanding] = useState(0);
 
-  useEffect(
-    () => {
-      let url =
-        "http://localhost:8080/api/books/outstanding/" + username.user_id;
-      axios
-        .get(url)
-        .then((response) => {
-          // console.log(response);
-          setBookList(response.data);
-          // response.data.forEach((e) => {
-          //   console.log(outstanding, e.anything, parseFloat(e.anything));
-          //   setOutstanding(prevOutstanding => prevOutstandings + parseFloat(e.anything));
-          // });
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setLoading(false);
-        });
-    },
-    [username.user_id],
-    refresh
-  );
+  useEffect(() => {
+    let url = "http://localhost:8080/api/books/outstanding/" + username.user_id;
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log(response);
+        setBookList(response.data);
+        // response.data.forEach((e) => {
+        //   console.log(outstanding, e.anything, parseFloat(e.anything));
+        //   setOutstanding(prevOutstanding => prevOutstandings + parseFloat(e.anything));
+        // });
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [username.user_id, refresh]);
 
   // accumulate prnrlty
   useEffect(
