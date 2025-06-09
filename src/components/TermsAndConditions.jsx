@@ -10,11 +10,11 @@ const TermsAndConditions = () => {
   // setCurrentAction("");
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isAuthenticated || !username || !param) {
+    if (!isAuthenticated || !username) {
       setCurrentAction("");
       navigate("/");
     }
-  }, []);
+  });
 
   return (
     <>
