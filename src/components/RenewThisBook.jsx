@@ -14,6 +14,7 @@ const RenewThisBook = () => {
     thisBook,
     setRefresh,
     refresh,
+    param,
   } = useContext(AuthContext);
   const [borrowRecord, setBorrowRecord] = useState();
   const [error, setError] = useState();
@@ -53,7 +54,10 @@ const RenewThisBook = () => {
     const bookData = {};
     // bookData.book_id = bookId;
     // bookData.user_id = username.user_id;
-    bookData.returnDate = twoMoreWeeks(borrowRecord.returnDate);
+    bookData.returnDate = twoMoreWeeks(
+      borrowRecord.returnDate,
+      param["BORROW_DAYS"]
+    );
     console.log("before", borrowRecord.renewed);
     bookData.renewed = borrowRecord.renewed + 1;
     console.log("after", bookData.renewed);

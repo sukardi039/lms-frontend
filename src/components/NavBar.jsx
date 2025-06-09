@@ -6,10 +6,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { InputBase, Badge, Avatar, Menu, MenuItem } from "@mui/material";
 import { Mail, Notifications } from "@mui/icons-material";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { Link, unstable_createContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -30,7 +31,14 @@ const Icon = styled(Box)({
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
-  const { isAuthenticated, username } = useContext(AuthContext);
+  const { isAuthenticated, username, param, setParam } =
+    useContext(AuthContext);
+
+  const [loading, setLoading] = useState();
+  const [error, setError] = useState();
+
+  console.log("param", param);
+
   return (
     <AppBar position="sticky">
       <StyledToolbar>
