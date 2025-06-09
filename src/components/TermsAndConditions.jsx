@@ -8,17 +8,17 @@ const TermsAndConditions = () => {
     useContext(AuthContext);
 
   // setCurrentAction("");
-
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isAuthenticated || !username) {
+    if (!isAuthenticated || !username || !param) {
+      setCurrentAction("");
       navigate("/");
     }
-  });
+  }, []);
 
   return (
     <>
-      <Box sx={{ marginTop: "30px" }}>
+      <Box sx={{ marginTop: "30px", display: param ? "block" : "none" }}>
         <Stack>
           <Typography variant="h6">
             The followings are the terms and conditions governing members

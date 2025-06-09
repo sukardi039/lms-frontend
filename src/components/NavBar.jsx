@@ -37,8 +37,6 @@ const NavBar = () => {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
 
-  console.log("param", param);
-
   return (
     <AppBar position="sticky">
       <StyledToolbar>
