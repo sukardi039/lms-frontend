@@ -35,6 +35,7 @@ const BorrowThisBook = () => {
     bookData.user_id = username.user_id;
     bookData.borrowedDate = timeStamp();
     bookData.returnDate = twoWeeksFromNow();
+    bookData.renewed = 0;
     bookData.status = 1;
     axios({
       method: "POST",

@@ -1,11 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Box, Stack, Typography } from "@mui/material";
+import axios from "axios";
 
 const TermsAndConditions = () => {
   const { setIsAuthenticated, setUsername, setThisBook, setCurrentAction } =
     useContext(AuthContext);
+  const [param, setParam] = useState();
+  const [loading, setLoading] = useState();
+  const [error, setError] = useState();
   setCurrentAction("");
+  useEffect(() => {
+    let url = "http://localhost:8080/api/params";
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log(response);
+        let data = response.data;
+        console.log("data", data);
+        setParam(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  const searchParam = (params, key) =>
+    params.find((param) => param.param_key === key);
+
   return (
     <>
       <Box sx={{ marginTop: "30px" }}>
@@ -52,10 +76,11 @@ const TermsAndConditions = () => {
               Member may renew the borrowed book for another 14 days before the
               date of return stated when borrowing the book.
             </li>
-            <li>One renewal may be request for one book for each borrow. </li>
+            <li>Two renewal may be request for one book for each borrow. </li>
             <li>
               Late fees of $0.50 each day will be charged for each book that is
-              not reutrned on or before the stated date of return.
+              not reutrned on or before the stated date of return. Late fee per
+              book is capped at $20 per borrow.
             </li>
             <li>
               Member will not be allowed to borrow books when any of the
@@ -63,7 +88,7 @@ const TermsAndConditions = () => {
             </li>
             <li>
               Member will be barred from borrowing books when the accumulative
-              late fees reached or exceeded $20.00
+              late fees reached or exceeded $10.00
             </li>
             <li>
               Member whom have borrowed any book(s) from our library is

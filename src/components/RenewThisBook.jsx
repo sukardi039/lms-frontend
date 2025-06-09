@@ -53,13 +53,14 @@ const RenewThisBook = () => {
     const bookData = {};
     // bookData.book_id = bookId;
     // bookData.user_id = username.user_id;
-    console.log("before", borrowRecord.returnDate);
     bookData.returnDate = twoMoreWeeks(borrowRecord.returnDate);
-    console.log("after", bookData.returnDate);
-    bookData.renewed = 1;
+    console.log("before", borrowRecord.renewed);
+    bookData.renewed = borrowRecord.renewed + 1;
+    console.log("after", bookData.renewed);
     bookData.borrow_id = borrowRecord.borrow_id;
     // bookData.returnDate = threeWeeksFromNow();
     // bookData.status = 1;
+    console.log(bookData);
     axios({
       method: "PUT",
       url:
