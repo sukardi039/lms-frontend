@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
       .then((response) => {
         // console.log(response);
         let data = response.data;
-        console.log("data", data);
+        // console.log("data", data);
         let par = [];
         for (let i = 0; i < data.length; i++) {
           par[data[i].param_key] = data[i].value_string;
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
           }
         }
         setParam(par);
-        console.log("data", data, param);
+        // console.log("data", data, param);
         setLoading(false);
       })
       .catch((err) => {

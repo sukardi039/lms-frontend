@@ -16,11 +16,13 @@ const Books = () => {
     // console.log("url", url);
     let ura = burl.split("/");
     let url = "http://localhost:8080/api/books";
-    if (ura[3] == "return") {
-      url = url + "/borrowed/" + username.user_id;
-    }
-    if (ura[3] == "renew") {
-      url = url + "/renew/" + username.user_id;
+    if (isAuthenticated) {
+      if (ura[3] == "return") {
+        url = url + "/borrowed/" + username.user_id;
+      }
+      if (ura[3] == "renew") {
+        url = url + "/renew/" + username.user_id;
+      }
     }
     axios
       .get(url)
