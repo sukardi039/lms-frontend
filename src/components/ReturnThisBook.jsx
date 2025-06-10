@@ -15,12 +15,19 @@ const ReturnThisBook = () => {
     thisBook,
     setRefresh,
     refresh,
+    setCurrentAction,
   } = useContext(AuthContext);
   const [borrowRecord, setBorrowRecord] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAuthenticated || !username) {
+      setCurrentAction("");
+      navigate("/");
+    }
+  });
 
   useEffect(() => {
     axios

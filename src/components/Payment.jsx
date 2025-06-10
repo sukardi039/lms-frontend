@@ -10,6 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const {
@@ -30,6 +31,14 @@ const Payment = () => {
   const [penelty, setPenelty] = useState(0);
 
   setCurrentAction("");
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAuthenticated || !username) {
+      setCurrentAction("");
+      navigate("/");
+    }
+  });
 
   useEffect(() => {
     let url = "http://localhost:8080/api/books/outstanding";

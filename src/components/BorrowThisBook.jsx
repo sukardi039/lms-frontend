@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { timeStamp } from "../lib/timeStamp";
@@ -21,6 +21,7 @@ const BorrowThisBook = () => {
     refresh,
     setRefresh,
     param,
+    setCurrentAction,
   } = useContext(AuthContext);
   const navigate = useNavigate();
   const { control, handleSubmit, setValue, reset } = useForm();
@@ -28,6 +29,14 @@ const BorrowThisBook = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
+
+  // const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAuthenticated || !username) {
+      setCurrentAction("");
+      navigate("/");
+    }
+  });
 
   const borrowThisBook = (bookId) => {
     console.log("borrow book ", bookId);

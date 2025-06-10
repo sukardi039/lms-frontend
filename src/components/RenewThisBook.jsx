@@ -15,13 +15,19 @@ const RenewThisBook = () => {
     setRefresh,
     refresh,
     param,
+    setCurrentAction,
   } = useContext(AuthContext);
   const [borrowRecord, setBorrowRecord] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (!isAuthenticated || !username) {
+      setCurrentAction("");
+      navigate("/");
+    }
+  });
   useEffect(() => {
     if (thisBook.book_id) {
       axios
