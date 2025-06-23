@@ -1,3 +1,14 @@
+/**
+ * UserLogins component displays the user's login statistics.
+ *
+ * - Fetches and displays the total number of times the authenticated user has logged in.
+ * - Shows the last 10 login timestamps for the user.
+ * - Uses AuthContext to determine authentication state and user information.
+ * - Handles and displays errors if the login data cannot be fetched.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered UserLogins component.
+ */
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";

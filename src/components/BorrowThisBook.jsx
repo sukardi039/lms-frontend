@@ -13,6 +13,18 @@ const BorrowThisBook = () => {
 
   const [error, setError] = useState();
 
+  /**
+   * Destructures authentication and book-related context values from AuthContext.
+   *
+   * @property {boolean} isAuthenticated - Indicates if the user is authenticated.
+   * @property {string} username - The current user's username.
+   * @property {Function} setThisBook - Function to set the current book.
+   * @property {Object} thisBook - The currently selected book object.
+   * @property {boolean} refresh - Flag to trigger refresh of data.
+   * @property {Function} setRefresh - Function to update the refresh flag.
+   * @property {any} param - Additional parameter from context (type may vary).
+   * @property {Function} setCurrentAction - Function to set the current action in context.
+   */
   const {
     isAuthenticated,
     username,

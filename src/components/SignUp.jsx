@@ -9,6 +9,16 @@ const SignUp = () => {
   const [signedUp, setSignedUp] = useState(false);
   const [error, setError] = useState();
 
+  /**
+   * React Hook Form methods for form state management.
+   *
+   * @constant
+   * @type {Object}
+   * @property {Object} control - Control object for React Hook Form to register inputs.
+   * @property {Function} handleSubmit - Function to handle form submission.
+   * @property {Function} setValue - Function to programmatically set form values.
+   * @property {Function} reset - Function to reset the form state.
+   */
   const { control, handleSubmit, setValue, reset } = useForm();
 
   const navigate = useNavigate();

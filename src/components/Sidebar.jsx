@@ -1,3 +1,20 @@
+/**
+ * Sidebar component displays a navigation menu based on the authenticated user's role.
+ *
+ * - Renders different navigation options for "admin" and "member" roles.
+ * - Uses Material UI components for styling and icons.
+ * - Includes a (hidden) dark mode toggle switch.
+ * - Shows a logout option for all authenticated users.
+ *
+ * @component
+ * @param {Object} props
+ * @param {"light"|"dark"} props.mode - The current theme mode.
+ * @param {Function} props.setMode - Function to toggle the theme mode.
+ * @returns {JSX.Element} The rendered Sidebar component.
+ *
+ * @example
+ * <Sidebar mode={mode} setMode={setMode} />
+ */
 import {
   AccountBox,
   LocalLibrary,
@@ -8,6 +25,7 @@ import {
   Gavel,
   Payments,
   ReplyAll,
+  Paid,
   Group,
   Home,
   ModeNight,
@@ -116,6 +134,14 @@ const Sidebar = ({ mode, setMode }) => {
                           <Refresh />
                         </ListItemIcon>
                         <ListItemText primary="Renew Books" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} to="/payfees">
+                        <ListItemIcon>
+                          <Paid />
+                        </ListItemIcon>
+                        <ListItemText primary="Pay Lete Fees" />
                       </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>

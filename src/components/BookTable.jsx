@@ -1,3 +1,18 @@
+/**
+ * BookTable component displays a searchable and editable table of books.
+ *
+ * @component
+ * @param {Object[]} booklist - Array of book objects to display in the table.
+ * @param {function} clickAction - Callback function triggered on add, edit, or delete actions. Receives action type and book data as arguments.
+ * @param {function} refresh - Function to refresh the book list (not used directly in this component).
+ *
+ * @example
+ * <BookTable
+ *   booklist={books}
+ *   clickAction={(action, book) => handleAction(action, book)}
+ *   refresh={fetchBooks}
+ * />
+ */
 import {
   Box,
   Grid,

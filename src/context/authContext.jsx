@@ -1,3 +1,31 @@
+/**
+ * AuthContext provides authentication and global state management for the application.
+ *
+ * @typedef {Object} AuthContextValue
+ * @property {boolean} isAuthenticated - Indicates if the user is authenticated.
+ * @property {Object} username - The current user's information.
+ * @property {string|null} currentAction - The current action being performed (e.g., "login").
+ * @property {Object} thisBook - The currently selected book object.
+ * @property {boolean} refresh - State to trigger refreshes in components.
+ * @property {Object|undefined} param - Application parameters fetched from the backend.
+ * @property {function(Object):void} login - Function to log in a user.
+ * @property {function():void} logout - Function to log out the user.
+ * @property {function(string|null):void} setCurrentAction - Setter for currentAction.
+ * @property {function(Object):void} setThisBook - Setter for thisBook.
+ * @property {function(Object):void} setUsername - Setter for username.
+ * @property {function(boolean):void} setIsAuthenticated - Setter for isAuthenticated.
+ * @property {function(boolean):void} setRefresh - Setter for refresh.
+ * @property {function(Object):void} setParam - Setter for param.
+ */
+
+/**
+ * AuthProvider component that wraps its children with AuthContext.Provider,
+ * supplying authentication state and related actions.
+ *
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Child components to be wrapped by the provider.
+ * @returns {JSX.Element} The AuthContext provider with authentication state and actions.
+ */
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 

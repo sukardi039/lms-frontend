@@ -11,6 +11,26 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
+/**
+ * BorrowedList component displays a list of books currently borrowed by the authenticated user.
+ *
+ * Fetches the borrowed books from the backend API using the user's ID and displays them in a table,
+ * including the book title and due date. Handles loading and error states.
+ *
+ * Context:
+ * - AuthContext: Provides authentication state, user info, and refresh trigger.
+ *
+ * State:
+ * - bookList: Array of borrowed books.
+ * - loading: Boolean indicating if data is being loaded.
+ * - error: Error message if fetching fails.
+ *
+ * Effects:
+ * - Fetches borrowed books whenever the user ID or refresh value changes.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered list of borrowed books for the current user.
+ */
 const BorrowedList = () => {
   const { isAuthenticated, username, setThisBook, thisBook, refresh } =
     useContext(AuthContext);

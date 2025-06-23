@@ -11,6 +11,24 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
+/**
+ * OutstandingList component displays a list of outstanding fees for the authenticated user.
+ *
+ * Fetches outstanding book fees from the backend API using the user's ID, calculates the total outstanding amount,
+ * and renders a table with book titles and their corresponding amounts. Also displays the total outstanding fees.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered OutstandingList component.
+ *
+ * @example
+ * <OutstandingList />
+ *
+ * @dependencies
+ * - React (useContext, useState, useEffect)
+ * - AuthContext for authentication and user information
+ * - axios for HTTP requests
+ * - Material UI components (Typography, Table, TableContainer, TableHead, TableRow, TableCell, TableBody)
+ */
 const OutstandingList = () => {
   const { isAuthenticated, username, setThisBook, thisBook, refresh } =
     useContext(AuthContext);

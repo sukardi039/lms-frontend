@@ -21,6 +21,15 @@ import BookAdd from "./BookAdd";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * BookEdit component for managing book collection actions (add, edit, delete, refresh).
+ *
+ * Handles authentication check, fetches book data from API, and manages UI state for book actions.
+ * Renders a table of books and conditionally displays the BookAdd component for editing or adding books.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered BookEdit component.
+ */
 const BookEdit = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

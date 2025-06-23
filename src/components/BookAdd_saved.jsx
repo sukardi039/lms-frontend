@@ -1,3 +1,30 @@
+/**
+ * BookAdd component allows users to add a new book to the library system.
+ *
+ * Features:
+ * - Uploads a book cover image to Firebase Storage and retrieves its URL.
+ * - Uses react-hook-form for form state management and validation.
+ * - Submits book data to a backend API endpoint.
+ * - Displays a preview of the uploaded book cover image.
+ *
+ * State:
+ * - fileName: Name/path of the uploaded file in Firebase Storage.
+ * - fileUrl: Download URL of the uploaded image.
+ * - error: Error state for API or upload failures.
+ * - refresh: Boolean to trigger data refresh after adding a book.
+ * - data: Placeholder for fetched data (not used in this component).
+ * - loading: Loading state for data fetching (not used in this component).
+ * - booklist: List of books (not used in this component).
+ *
+ * Methods:
+ * - uploadFile: Handles file input change, uploads image to Firebase, and updates fileName.
+ * - onSubmitAdd: Handles form submission, posts book data to API, resets form, and triggers refresh.
+ *
+ * Effects:
+ * - useEffect: Watches fileName, fetches the image URL from Firebase, updates form and image preview.
+ *
+ * @component
+ */
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import {

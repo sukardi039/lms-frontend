@@ -5,6 +5,18 @@ import { Box, Skeleton, Stack, Typography } from "@mui/material";
 import BookGrid from "./BookGrid";
 import { AuthContext } from "../context/AuthContext";
 
+/**
+ * Books component fetches and displays a list of books from the backend API.
+ *
+ * - If the user is authenticated and the URL path includes "return" or "renew",
+ *   it fetches borrowed or renewable books for the current user.
+ * - Displays loading skeletons while fetching data.
+ * - Shows an error message if the fetch fails.
+ * - Renders a BookGrid component with the fetched book data.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Books component.
+ */
 const Books = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

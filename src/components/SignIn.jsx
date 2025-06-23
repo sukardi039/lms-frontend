@@ -21,6 +21,16 @@ const SignIn = () => {
 
   setCurrentAction("signin");
 
+  /**
+   * Attempts to log in a user by sending their credentials to the backend API.
+   * Encrypts the user's password before making a GET request to the authentication endpoint.
+   * On successful authentication, updates user state and signs the user in.
+   * On failure, displays an alert and sets an error state.
+   *
+   * @param {Object} data - The login data.
+   * @param {string} data.loginUser - The user's email address or username.
+   * @param {string} data.password - The user's plaintext password.
+   */
   const checkLogin = (data) => {
     // console.log("bf", data);
     data.password = encrypter(data.password);

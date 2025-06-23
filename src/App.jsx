@@ -1,3 +1,13 @@
+/**
+ * The main application component for the LMS frontend.
+ *
+ * Wraps the application in authentication and routing providers, and sets up the main layout
+ * with a navigation bar, sidebar, landing content area, and right bar. Defines all application routes
+ * and their corresponding components.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered App component.
+ */
 import {
   Box,
   List,
@@ -22,6 +32,7 @@ import SignUp from "./components/SignUp";
 import BorrowBooks from "./components/BorrowBooks";
 import ReturnBooks from "./components/ReturnBooks";
 import RenewBooks from "./components/RenewBooks";
+import PayFees from "./components/PayFees";
 import Payment from "./components/Payment";
 import BorrowThisBook from "./components/BorrowThisBook";
 import SignOut from "./components/SignOut";
@@ -49,6 +60,7 @@ function App() {
                   <Route path="/home" element={<Books />} />
                   <Route path="/editbook" element={<BookEdit />} />
                   <Route path="/payment" element={<Payment />} />
+                  <Route path="/payfees" element={<PayFees />} />
                   <Route path="/borrow" element={<BorrowBooks />} />
                   <Route path="/return" element={<ReturnBooks />} />
                   <Route path="/renew" element={<RenewBooks />} />

@@ -1,3 +1,9 @@
+/**
+ * Generates a timestamp string representing the current date and time
+ * in the format "YYYY-MM-DD HH:mm:ss".
+ *
+ * @returns {string} The formatted timestamp string.
+ */
 export function timeStamp() {
   const now = new Date();
 

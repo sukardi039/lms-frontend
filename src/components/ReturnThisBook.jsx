@@ -8,6 +8,17 @@ import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import axios from "axios";
 
 const ReturnThisBook = () => {
+  /**
+   * Destructures authentication and book-related state and functions from AuthContext.
+   *
+   * @property {boolean} isAuthenticated - Indicates if the user is authenticated.
+   * @property {string} username - The current user's username.
+   * @property {Function} setThisBook - Function to set the current book.
+   * @property {Object} thisBook - The currently selected book object.
+   * @property {Function} setRefresh - Function to trigger a refresh of data.
+   * @property {boolean} refresh - Indicates if a refresh is needed.
+   * @property {Function} setCurrentAction - Function to set the current user action.
+   */
   const {
     isAuthenticated,
     username,

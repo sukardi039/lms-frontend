@@ -1,3 +1,10 @@
+/**
+ * Returns a date string representing the date that is a specified number of days from today,
+ * formatted as "YYYY-MM-DD 23:59:59".
+ *
+ * @param {number} moreDays - The number of days to add to the current date.
+ * @returns {string} The resulting date in "YYYY-MM-DD 23:59:59" format.
+ */
 export function twoWeeksFromNow(moreDays) {
   const today = new Date();
   const twoWeeksLater = new Date(today);

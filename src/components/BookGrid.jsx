@@ -2,6 +2,14 @@ import { Box, Grid, TextField, Toolbar, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
 
+/**
+ * BookGrid component displays a grid of books with a search functionality.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Array<Object>} props.booklist - The list of book objects to display. Each book object should contain at least a `title` and `book_id` property.
+ * @returns {JSX.Element} The rendered BookGrid component with search and book cards.
+ */
 const BookGrid = ({ booklist }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setFilteredBooks] = useState(booklist);

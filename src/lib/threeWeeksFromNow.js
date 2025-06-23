@@ -1,3 +1,9 @@
+/**
+ * Returns the date exactly three weeks (21 days) from today,
+ * formatted as "YYYY-MM-DD 23:59:59".
+ *
+ * @returns {string} The date three weeks from now in "YYYY-MM-DD 23:59:59" format.
+ */
 export function threeWeeksFromNow() {
   const today = new Date();
   const threeWeeksLater = new Date(today);

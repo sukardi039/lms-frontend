@@ -4,6 +4,14 @@ import { Box, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const TermsAndConditions = () => {
+  /**
+   * Destructures authentication-related values and functions from AuthContext.
+   *
+   * @property {boolean} isAuthenticated - Indicates if the user is authenticated.
+   * @property {string} username - The current user's username.
+   * @property {Function} setCurrentAction - Function to set the current authentication action.
+   * @property {*} param - Additional parameter from the AuthContext.
+   */
   const { isAuthenticated, username, setCurrentAction, param } =
     useContext(AuthContext);
 

@@ -5,6 +5,17 @@ import BorrowedList from "./BorrowedList";
 import OverdueList from "./OverdueList";
 import OutstandingList from "./OutstandingList";
 
+/**
+ * Rightbar component displays contextual information and actions
+ * based on the current user action in the LMS frontend.
+ *
+ * - Shows different lists (Borrowed, Overdue, Outstanding) when borrowing or returning books.
+ * - Displays instructions for signing in or editing book records.
+ * - Only visible on large screens (lg and up).
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Rightbar component.
+ */
 const Rightbar = () => {
   const [action, setAction] = useState(null);
   const { isAuthenticated, username, currentAction } = useContext(AuthContext);

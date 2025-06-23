@@ -4,6 +4,25 @@ import { Box, Stack, Typography } from "@mui/material";
 import UserLogins from "./UserLogins";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * AdminDashboard component for the LMS frontend.
+ *
+ * Displays a welcome message and admin instructions for authenticated users.
+ * Redirects to the home page if the user is not authenticated.
+ *
+ * Context:
+ * - Uses AuthContext to access authentication state and username.
+ * - Uses setCurrentAction to reset the current action on mount.
+ *
+ * Navigation:
+ * - Uses react-router's useNavigate to redirect unauthenticated users.
+ *
+ * UI:
+ * - Greets the admin user by name.
+ * - Provides instructions for maintaining the book collection.
+ *
+ * @component
+ */
 const AdminDashboard = () => {
   const { isAuthenticated, username, setCurrentAction } =
     useContext(AuthContext);

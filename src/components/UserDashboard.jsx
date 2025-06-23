@@ -7,6 +7,16 @@ import { useNavigate } from "react-router-dom";
 import OverdueList from "./OverdueList";
 import OutstandingList from "./OutstandingList";
 
+/**
+ * UserDashboard component displays the main dashboard for authenticated users.
+ *
+ * - Redirects to the home page if the user is not authenticated.
+ * - Greets the user by name and provides instructions for browsing books.
+ * - Shows lists of borrowed, overdue, and outstanding books.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered user dashboard.
+ */
 const UserDashboard = () => {
   const { isAuthenticated, username, setCurrentAction } =
     useContext(AuthContext);

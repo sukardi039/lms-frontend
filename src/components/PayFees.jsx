@@ -12,19 +12,6 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-/**
- * Payment component for acknowledging and processing payments of outstanding book penalties.
- *
- * This component fetches a list of books with outstanding penalties, displays them in a table,
- * and allows the user to mark penalties as paid. It uses context for authentication and state management,
- * and interacts with backend APIs to retrieve and update payment information.
- *
- * @component
- * @returns {JSX.Element} The rendered Payment component.
- *
- * @example
- * <Payment />
- */
 const Payment = () => {
   const {
     isAuthenticated,
@@ -54,7 +41,7 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    let url = "http://localhost:8080/api/books/outstanding";
+    let url = "http://localhost:8080/api/books/outstanding/" + username.user_id;
     axios
       .get(url)
       .then((response) => {
@@ -82,6 +69,17 @@ const Payment = () => {
       });
   }, [username.user_id, refresh]);
 
+  /**
+   * Sends a payment request for a borrowed book's penalty fee.
+   *
+   * @param {string|number} borrow_id - The ID of the borrowed book to pay the penalty for.
+   * @param {number} penelty - The penalty amount to be paid.
+   * @returns {void}
+   *
+   * Makes a PUT request to the backend to pay the penalty for the specified borrowed book.
+   * On success, alerts the user if the penalty is paid, refreshes the data, and updates loading state.
+   * On failure, sets the error message and updates loading state.
+   */
   const payThisBook = (borrow_id, penelty) => {
     let url = "http://localhost:8080/api/borrowedbooks/pay/" + borrow_id;
     axios
@@ -108,13 +106,12 @@ const Payment = () => {
       <Box sx={{ marginTop: "30px" }}>
         <Stack>
           <Typography variant="h6">
-            Acknowledge receipt of payments for the following fees
+            Make payments for the following late fees
           </Typography>
           <TableContainer sx={{ display: bookList.length ? "block" : "none" }}>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Member</TableCell>
                   <TableCell>Title</TableCell>
                   <TableCell align="right">Amount</TableCell>
                   <TableCell></TableCell>
@@ -128,9 +125,8 @@ const Payment = () => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.title}
                     </TableCell>
-                    <TableCell>{row.title}</TableCell>
                     <TableCell align="right">
                       {row.penelty.toFixed(2)}
                     </TableCell>
@@ -142,7 +138,7 @@ const Payment = () => {
                           }
                         }}
                       >
-                        Received in full
+                        Pay in full
                       </Button>
                     </TableCell>
                   </TableRow>

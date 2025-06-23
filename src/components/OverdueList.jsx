@@ -11,6 +11,18 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
+/**
+ * OverdueList component displays a list of overdue books for the authenticated user.
+ *
+ * Fetches overdue books from the backend API using the user's ID and displays them in a table.
+ * Shows the total number of overdue books and their due dates.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered component displaying overdue books.
+ *
+ * @example
+ * <OverdueList />
+ */
 const OverdueList = () => {
   const { isAuthenticated, username, setThisBook, thisBook, refresh } =
     useContext(AuthContext);

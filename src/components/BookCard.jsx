@@ -14,6 +14,14 @@ const BookCard = ({ book }) => {
   const { isAuthenticated, username, setThisBook } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  /**
+   * Handles the click event on a book card.
+   * If the user is authenticated, determines the current route context (borrow, return, or renew)
+   * and navigates to the corresponding page for the selected book, setting the book in state.
+   *
+   * @function
+   * @returns {void}
+   */
   const cardClicked = () => {
     if (isAuthenticated) {
       let url = window.location.href;

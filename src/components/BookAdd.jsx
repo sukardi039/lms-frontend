@@ -1,3 +1,22 @@
+/**
+ * BookAdd component for adding, editing, or deleting a book entry.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {'add'|'edit'|'delete'} props.mode - The mode of the form, determines if the form is for adding, editing, or deleting a book.
+ * @param {Object} props.originalData - The original data of the book to edit or delete.
+ * @param {number} props.originalData.book_id - The unique identifier of the book.
+ * @param {string} props.originalData.isbn - The ISBN of the book.
+ * @param {string} props.originalData.title - The title of the book.
+ * @param {string} props.originalData.author - The author of the book.
+ * @param {string} props.originalData.category - The category of the book.
+ * @param {string} props.originalData.bookImage - The URL of the book's cover image.
+ * @param {string|number} props.originalData.publishedYear - The year the book was published.
+ * @param {string|number} props.originalData.copyInStock - The number of copies in stock.
+ * @param {Function} props.endAction - Callback function to execute after the form action is completed (e.g., refresh or close).
+ *
+ * @returns {JSX.Element} The rendered BookAdd form component.
+ */
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import {

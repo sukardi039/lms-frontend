@@ -1,3 +1,23 @@
+/**
+ * NavBar component for the Library Management System.
+ *
+ * Renders the application navigation bar with branding, user authentication status,
+ * and user avatar. Displays the username when authenticated and provides navigation
+ * to the sign-in page when not authenticated. Uses Material-UI components for styling.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered navigation bar component.
+ *
+ * @example
+ * <NavBar />
+ *
+ * @dependencies
+ * - React
+ * - @mui/material
+ * - @mui/icons-material
+ * - react-router-dom
+ * - AuthContext
+ */
 import { AppBar } from "@mui/material";
 import { styled, Toolbar, Box } from "@mui/material";
 import { Typography } from "@mui/material";

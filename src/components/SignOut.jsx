@@ -1,3 +1,14 @@
+/**
+ * SignOut component handles the user sign-out process.
+ *
+ * This component:
+ * - Resets authentication state and user-related context values.
+ * - Navigates the user to the home page ("/").
+ * - Displays a "Signing out..." message.
+ *
+ * @component
+ * @returns {JSX.Element} A message indicating the user is signing out.
+ */
 import { Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";

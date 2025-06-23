@@ -1,3 +1,9 @@
+/**
+ * Error404 component displays a "Page not found" message and provides a link to navigate back to the home page.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Error404 component.
+ */
 import React from "react";
 import { Link } from "react-router-dom";
 
